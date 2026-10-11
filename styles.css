@@ -66,6 +66,19 @@ h1 { font-size: clamp(56px, 6.3vw, 83px); line-height: 1.12; letter-spacing: -3.
 .section-heading > p { max-width: 375px; color: var(--muted); font-size: 14px; }
 .section-heading > div:first-child { flex-shrink: 0; }
 .research-overview { display: grid; grid-template-columns: 1.35fr 1fr; align-items: start; gap: 65px; }
+.real-lens-feature { display: grid; grid-template-columns: 320px 1fr; align-items: center; gap: 65px; }
+.real-lens-feature .feature-copy { max-width: 615px; }
+.real-lens-feature .feature-copy h3 { font-size: 35px; }
+.real-lens-figure { max-width: 320px; }
+.rubin-section { border-bottom: 1px solid var(--line); }
+.rubin-feature { display: grid; grid-template-columns: 1fr 1.12fr; gap: 65px; align-items: center; }
+.rubin-feature h2 { margin-bottom: 23px; }
+.rubin-feature .text-link { margin-top: 23px; }
+.rubin-photo { align-self: center; }
+.rubin-goals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 38px; margin-top: 43px; padding-top: 29px; border-top: 1px solid var(--line); }
+.rubin-goals article + article { padding-left: 30px; border-left: 1px solid var(--line); }
+.rubin-goals h3 { font-size: 18px; margin-bottom: 10px; }
+.rubin-goals p { font-size: 13px; color: var(--muted); }
 .science-figure { min-width: 0; }
 .science-figure img { width: 100%; }
 .figure-link { display: block; text-decoration: none; position: relative; background: white; }
@@ -186,6 +199,9 @@ body.dialog-open { overflow: hidden; }
   .section-heading { gap: 35px; }
   .section-heading > div:first-child { flex-shrink: 1; }
   .research-overview { gap: 35px; grid-template-columns: 1.1fr 1fr; }
+  .real-lens-feature { grid-template-columns: 280px 1fr; gap: 35px; }
+  .rubin-feature { gap: 35px; }
+  #site-nav { gap: 20px; }
   .model-feature { gap: 40px; }
   .about-grid, .contact-inner { gap: 50px; }
   .animation-bottom { gap: 30px; }
@@ -212,6 +228,12 @@ body.dialog-open { overflow: hidden; }
   .section-heading .section-links { margin-top: 25px; }
   .section-heading > .text-link { margin-top: 24px; }
   .research-overview { grid-template-columns: 1fr; gap: 37px; }
+  .real-lens-feature { grid-template-columns: 1fr; gap: 30px; }
+  .real-lens-figure { width: 100%; justify-self: center; }
+  .real-lens-feature .feature-copy h3 { font-size: 30px; }
+  .rubin-feature, .rubin-goals { grid-template-columns: 1fr; gap: 27px; }
+  .rubin-goals { margin-top: 30px; }
+  .rubin-goals article + article { border-left: 0; border-top: 1px solid var(--line); padding: 23px 0 0; }
   .research-topics article { padding-bottom: 21px; }
   .model-feature { grid-template-columns: 1fr; grid-template-areas: "copy" "reconstruction" "mass"; margin-top: 22px; gap: 26px; padding-top: 38px; }
   .feature-copy h3 { font-size: 30px; }

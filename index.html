@@ -13,9 +13,9 @@
   <meta property="og:url" content="https://jfagin.github.io/">
   <link rel="canonical" href="https://jfagin.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261010-rubin">
   <script src="script.js" defer></script>
-  <title>Joshua Fagin | Astrophysics & Machine Learning</title>
+  <title>Joshua Fagin | Astrophysics &amp; Machine Learning</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -38,6 +38,7 @@
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu <span aria-hidden="true">+</span></button>
       <nav id="site-nav" aria-label="Main navigation">
         <a href="#research">Research</a>
+        <a href="#rubin">Rubin / LSST</a>
         <a href="#publications">Publications</a>
         <a href="#software">Software</a>
         <a href="#about">About</a>
@@ -53,7 +54,7 @@
         <h1 id="hero-title">Joshua Fagin, Ph.D.</h1>
         <p class="position">Postdoctoral Researcher<br><span>Stony Brook University</span></p>
         <p class="hero-intro">I use the changing light of quasars to study black holes, the galaxies that lens them, and the expansion of the Universe.</p>
-        <p class="hero-detail">Working with Simon Birrer, I combine dynamical microlensing simulations with machine learning to turn irregular light curves into measurements and event forecasts.</p>
+        <p class="hero-detail">Working with Simon Birrer, I combine dynamical microlensing simulations with machine learning to turn irregular light curves into measurements and event forecasts for <a href="#rubin">Rubin Observatory’s Legacy Survey of Space and Time</a>.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#research">Explore my research <span aria-hidden="true">↘</span></a>
           <a class="text-link" href="mailto:joshua.fagin@stonybrook.edu">Get in touch <span aria-hidden="true">↗</span></a>
@@ -77,6 +78,53 @@
           <p>I build physical simulators and inference methods to connect time-domain observations to the systems that produce them.</p>
         </div>
 
+        <article class="real-lens-feature" aria-labelledby="real-lens-title">
+          <figure class="science-figure real-lens-figure">
+            <a href="assets/rx-j1131-hst.png" class="figure-link" data-figure data-title="RX J1131−1231: one quasar, four images" data-caption="Hubble Space Telescope observations of RX J1131−1231. Four images of the same quasar surround the foreground lens galaxy, with the quasar's host galaxy stretched into arcs. Image: ESA/Hubble, NASA, Suyu et al., CC BY 4.0. Labels and circles added for my proposal.">
+              <img src="assets/rx-j1131-hst.png" alt="Labeled Hubble image of RX J1131−1231 showing four quasar images, the central foreground lens galaxy, and the lensed host-galaxy arcs" width="418" height="418" loading="lazy">
+              <span class="enlarge-label">View HST image <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption>Observed with Hubble, not a simulation. <a href="https://esahubble.org/images/heic1702d/">ESA/Hubble, NASA, Suyu et al.</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Labels added.</figcaption>
+          </figure>
+          <div class="feature-copy">
+            <p class="eyebrow">A real gravitational lens</p>
+            <h3 id="real-lens-title">One quasar.<br>Four views of a changing disk.</h3>
+            <p>In RX J1131−1231, a foreground galaxy bends the light of a distant quasar into four images. Each follows a different path, so the same intrinsic variations arrive at different times.</p>
+            <p>Stars in the lens galaxy add a different microlensing signal to each image. Separating these signals lets us study accretion disks and compact objects while measuring the time delays that probe cosmic expansion.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="rubin-section section" id="rubin" aria-labelledby="rubin-title">
+      <div class="container">
+        <div class="rubin-feature">
+          <div class="feature-copy">
+            <p class="eyebrow">Rubin Observatory / LSST</p>
+            <h2 id="rubin-title">A decade of light.<br>New ways to read it.</h2>
+            <p>The Legacy Survey of Space and Time repeatedly images the southern sky in six bands. For quasars, that means long, multicolor records of accretion and microlensing, with irregular sampling and seasonal gaps.</p>
+            <p>I am developing latent-SDE models trained on physical simulations to make use of these light curves as they grow. My goal is to connect survey monitoring to measurements of disk structure, microlens populations, and cosmological time delays, while guiding follow-up of the most informative events.</p>
+            <a class="text-link" href="https://rubinobservatory.org/explore/how-rubin-works/lsst">About Rubin’s survey <span aria-hidden="true">↗</span></a>
+          </div>
+          <figure class="science-figure rubin-photo">
+            <a href="assets/rubin-observatory.jpg" class="figure-link" data-figure data-title="Vera C. Rubin Observatory" data-caption="Rubin Observatory on Cerro Pachón, Chile, at twilight. Archival observatory photograph released in 2023, not a rendering. Credit: RubinObs/NOIRLab/NSF/AURA, CC BY 4.0. Original photograph unchanged.">
+              <img src="assets/rubin-observatory.jpg" alt="Vera C. Rubin Observatory on Cerro Pachón beneath a blue and orange twilight sky" width="4928" height="3264" loading="lazy">
+              <span class="enlarge-label">View observatory <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption>Rubin Observatory on Cerro Pachón, Chile. <a href="https://noirlab.edu/public/images/noirlab2327c/">RubinObs/NOIRLab/NSF/AURA</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Archival photograph, 2023.</figcaption>
+          </figure>
+        </div>
+        <div class="rubin-goals" aria-label="My research goals for Rubin light curves">
+          <article><h3>Reconstruct</h3><p>Recover light curves through gaps and separate shared intrinsic variability from image-specific microlensing.</p></article>
+          <article><h3>Infer</h3><p>Use the full time series to constrain physical parameters and their uncertainties.</p></article>
+          <article><h3>Identify &amp; forecast</h3><p>Find past caustic crossings and predict future high-magnification events for multiband and spectroscopic follow-up.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="research section research-details" aria-label="Microlensing and machine-learning methods">
+      <div class="container">
         <div class="research-overview">
           <figure class="science-figure overview-figure">
             <a href="assets/lensing-and-reverberation.png" class="figure-link" data-figure data-title="Reverberation and gravitational microlensing" data-caption="Physical Q2237+0305 image-A simulation. Intrinsic disk variability and dynamical microlensing combine to produce the observed light curve. The plotted observations are simulated Rubin visits, not real data.">
@@ -134,7 +182,7 @@
       <div class="container">
         <div class="section-heading">
           <div><p class="eyebrow">The science in motion</p><h2 id="motion-title">A magnifying glass that moves.</h2></div>
-          <p>These physical simulations show how evolving caustics change a quasar’s spectrum and reverberation response. Play either animation to follow an event.</p>
+          <p>These physical simulations show how evolving caustics change a quasar’s spectrum and reverberation response. Choose one of the two animations below, then select Play animation.</p>
         </div>
         <div class="animation-tabs" role="group" aria-label="Choose a simulation" hidden>
           <button type="button" class="tab-button" aria-pressed="true" data-animation-tab="transfer">Time delays &amp; transfer functions</button>
@@ -142,25 +190,24 @@
         </div>
         <figure class="animation-figure" id="animation-transfer" data-animation-panel="transfer">
           <div class="animation-surface">
-            <img id="transfer-image" src="assets/microlensing-transfer.png" data-still="assets/microlensing-transfer.png" data-animation="assets/microlensing-transfer.gif" alt="Simulated Q2237 image-B magnification map and six-band transfer functions, showing shifts in mean response delays" width="1972" height="789" loading="lazy">
+            <img id="transfer-image" src="assets/microlensing-transfer.png?v=seed42-lsst3" data-still="assets/microlensing-transfer.png?v=seed42-lsst3" data-animation="assets/microlensing-transfer.gif?v=seed42-lsst3" alt="Simulated Q2237 image-B magnification map, six-band transfer functions and daily light curves, with mock LSST observations and one labeled caustic-crossing time" width="2304" height="1440" loading="lazy">
           </div>
           <div class="animation-bottom">
-            <figcaption><strong>Microlensing changes more than brightness.</strong> As a caustic crosses the disk, it changes the weighting of response delays. Arrows mark shifts in the mean lag relative to the unmagnified response. Simulated Q2237+0305 image B.</figcaption>
+            <figcaption><strong>Microlensing changes more than brightness.</strong> As a caustic crosses the disk, it changes the weighting of response delays. Arrows mark shifts in the mean lag relative to the unmagnified response. The daily light curves include mock LSST observations with capped error bars and a marked caustic-crossing time. Simulated Q2237+0305 image B.</figcaption>
             <button class="button button-play" type="button" data-play="transfer-image" aria-controls="transfer-image" aria-pressed="false" hidden><span aria-hidden="true">▶</span> Play animation</button>
           </div>
-          <noscript><p><a href="assets/microlensing-transfer.gif">Open transfer-function animation (6 MB)</a></p></noscript>
+          <noscript><p><a href="assets/microlensing-transfer.gif?v=seed42-lsst3">Open transfer-function animation (7.4 MB)</a></p></noscript>
         </figure>
         <figure class="animation-figure" id="animation-spectrum" data-animation-panel="spectrum">
           <div class="animation-surface">
-            <img id="spectrum-image" src="assets/microlensing-spectrum.png" data-still="assets/microlensing-spectrum.png" data-animation="assets/microlensing-spectrum.gif" alt="Simulated moving microlensing map, evolving quasar spectrum, wavelength-dependent magnification, and six-band daily light curves" width="2047" height="1279" loading="lazy">
+            <img id="spectrum-image" src="assets/microlensing-spectrum.png?v=seed1003-lsst2" data-still="assets/microlensing-spectrum.png?v=seed1003-lsst2" data-animation="assets/microlensing-spectrum.gif?v=seed1003-lsst2" alt="Simulated moving microlensing map, evolving quasar spectrum, wavelength-dependent magnification, and six-band daily light curves with mock LSST observations and a labeled caustic crossing" width="2048" height="1336" loading="lazy">
           </div>
           <div class="animation-bottom">
-            <figcaption><strong>One crossing, many wavelengths.</strong> A simulated magnification pattern, evolving disk continuum, empirical emission lines, and Rubin bandpasses connect the source physics to multiband light curves. Simulated Q2237+0305 image B.</figcaption>
+            <figcaption><strong>One crossing, many wavelengths.</strong> A simulated magnification pattern, evolving disk continuum, empirical emission lines, and Rubin bandpasses connect the source physics to daily multiband light curves. Points with capped error bars are mock LSST observations; the caustic-crossing time is marked. Simulated Q2237+0305 image B.</figcaption>
             <button class="button button-play" type="button" data-play="spectrum-image" aria-controls="spectrum-image" aria-pressed="false" hidden><span aria-hidden="true">▶</span> Play animation</button>
           </div>
-          <noscript><p><a href="assets/microlensing-spectrum.gif">Open spectral animation (10 MB)</a></p></noscript>
+          <noscript><p><a href="assets/microlensing-spectrum.gif?v=seed1003-lsst2">Open spectral animation (8.7 MB)</a></p></noscript>
         </figure>
-        <p class="animation-note">Animations load only when played. The two examples use different stellar realizations.</p>
         <p class="sr-only" id="animation-status" role="status"></p>
 
         <article class="follow-up-feature" id="follow-up" aria-labelledby="follow-up-title">
@@ -255,7 +302,7 @@
           </ol>
         </div>
         <div class="community">
-          <article><h3>Preparing for Rubin</h3><p>I co-lead a quasar-variability task force in the Rubin AGN Science Collaboration and participate in the Dark Energy and Strong Lensing Science Collaborations. I am also a member of the FutureLens Collaboration.</p><p>My research direction is to connect survey monitoring to calibrated parameter inference, light-curve reconstruction, and timely alerts for multiband and spectroscopic follow-up.</p></article>
+          <article><h3>Science collaborations</h3><p>I co-lead a quasar-variability task force in the Rubin AGN Science Collaboration and participate in the Dark Energy and Strong Lensing Science Collaborations. I am also a member of the FutureLens Collaboration.</p></article>
           <article><h3>Teaching</h3><p>I taught nine undergraduate physics laboratory sections at CUNY Lehman College in the Bronx, covering mechanics, electromagnetism, and physics of sound.</p><p>I develop open scientific-software tutorials and am interested in making time-series inference, GPU computing, and machine learning more accessible to astronomy students.</p></article>
           <article><h3>Across astronomy and AI</h3><p>My latent-SDE work received a spotlight presentation at the ICLR 2023 Physics for Machine Learning Workshop. I have presented research at astronomy and machine-learning meetings, including Rubin science-collaboration meetings.</p></article>
         </div>
