@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jfagin.github.io/sitemap.xml

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Joshua Fagin is a postdoctoral researcher at Stony Brook University working on quasar variability, dynamical microlensing, and machine learning.">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Joshua Fagin | Astrophysics & Machine Learning">
+  <meta property="og:description" content="Using changing quasar light to study black holes, compact objects, and cosmology. Research, publications, and scientific software.">
+  <meta property="og:image" content="https://jfagin.github.io/assets/joshua-fagin.jpg">
+  <meta property="og:image:alt" content="Joshua Fagin in front of an astronomical image">
+  <meta property="og:url" content="https://jfagin.github.io/">
+  <link rel="canonical" href="https://jfagin.github.io/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <title>Joshua Fagin | Astrophysics & Machine Learning</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Joshua Fagin",
+    "url": "https://jfagin.github.io/",
+    "jobTitle": "Postdoctoral Researcher in Astrophysics and Machine Learning",
+    "affiliation": {"@type": "CollegeOrUniversity", "name": "Stony Brook University"},
+    "email": "mailto:joshua.fagin@stonybrook.edu",
+    "sameAs": ["https://scholar.google.com/citations?user=cvoJrPEAAAAJ", "https://orcid.org/0000-0001-8723-6136", "https://github.com/JFagin"],
+    "knowsAbout": ["Gravitational microlensing", "Quasar variability", "Machine learning", "Time-delay cosmography"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="#home" aria-label="Joshua Fagin, home">Joshua Fagin</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu <span aria-hidden="true">+</span></button>
+      <nav id="site-nav" aria-label="Main navigation">
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#software">Software</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Astrophysics &amp; machine learning</p>
+        <h1 id="hero-title">Joshua Fagin, Ph.D.</h1>
+        <p class="position">Postdoctoral Researcher<br><span>Stony Brook University</span></p>
+        <p class="hero-intro">I use the changing light of quasars to study black holes, the galaxies that lens them, and the expansion of the Universe.</p>
+        <p class="hero-detail">Working with Simon Birrer, I combine dynamical microlensing simulations with machine learning to turn irregular light curves into measurements and event forecasts.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#research">Explore my research <span aria-hidden="true">↘</span></a>
+          <a class="text-link" href="mailto:joshua.fagin@stonybrook.edu">Get in touch <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="profile-links" aria-label="Research profiles">
+          <a href="https://scholar.google.com/citations?hl=en&amp;user=cvoJrPEAAAAJ">Google Scholar <span aria-hidden="true">↗</span></a>
+          <a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Fagin%2C%20Joshua%22&amp;sort=date%20desc">NASA ADS <span aria-hidden="true">↗</span></a>
+          <a href="https://orcid.org/0000-0001-8723-6136">ORCID <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/JFagin">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <div class="portrait-frame"><img src="assets/joshua-fagin.jpg" alt="Joshua Fagin" width="529" height="529" fetchpriority="high"></div>
+      </figure>
+    </section>
+
+    <section class="research section" id="research" aria-labelledby="research-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">01 / Research</p><h2 id="research-title">Learning from a changing sky.</h2></div>
+          <p>I build physical simulators and inference methods to connect time-domain observations to the systems that produce them.</p>
+        </div>
+
+        <div class="research-overview">
+          <figure class="science-figure overview-figure">
+            <a href="assets/lensing-and-reverberation.png" class="figure-link" data-figure data-title="Reverberation and gravitational microlensing" data-caption="Physical Q2237+0305 image-A simulation. Intrinsic disk variability and dynamical microlensing combine to produce the observed light curve. The plotted observations are simulated Rubin visits, not real data.">
+              <img src="assets/lensing-and-reverberation.png" alt="Diagram connecting a reverberating black-hole accretion disk, a foreground lens galaxy with moving stars, and simulated quasar light curves" width="1847" height="1217" loading="lazy">
+              <span class="enlarge-label">View figure <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption>Two complementary probes of one accretion disk. Illustration and simulated Q2237+0305 light curves from my research.</figcaption>
+          </figure>
+          <div class="research-topics">
+            <article>
+              <span class="topic-index">01</span>
+              <h3>Quasar accretion disks</h3>
+              <p>Reverberation measures how an accretion disk responds to changing illumination. Microlensing magnifies different parts of the disk. Together, they can reveal its size, temperature structure, and inner regions.</p>
+            </article>
+            <article>
+              <span class="topic-index">02</span>
+              <h3>Dynamical microlensing</h3>
+              <p>Stars move, so the magnification pattern evolves. I developed <a href="#microcaustics">Microcaustics</a> to make these simulations practical on GPUs and study how stellar motion and mass distributions affect inference.</p>
+            </article>
+            <article>
+              <span class="topic-index">03</span>
+              <h3>Cosmology &amp; compact objects</h3>
+              <p>Strongly lensed quasars probe compact matter in distant galaxies and provide time delays for measuring cosmic expansion. My goal is joint time-series inference that accounts for microlensing rather than treating it only as a nuisance.</p>
+            </article>
+          </div>
+        </div>
+
+        <article class="model-feature">
+          <div class="feature-copy">
+            <p class="eyebrow">Machine learning for inference</p>
+            <h3>From sparse observations<br>to physical models.</h3>
+            <p>My latent stochastic differential equation (SDE) framework reconstructs irregular quasar light curves and infers black-hole and accretion-disk properties. It combines learned variability with a physical model of disk reprocessing.</p>
+            <p>Current work extends this approach to simulation-based inference with a pretrained Transformer encoder and tests it on observed ZTF and DES quasars. For lensed systems, I am developing methods to identify past crossings and forecast future high-magnification events for follow-up.</p>
+            <a class="text-link" href="https://doi.org/10.3847/1538-4357/addabc">Read the latent-SDE paper <span aria-hidden="true">↗</span></a>
+          </div>
+          <figure class="science-figure reconstruction-figure">
+            <a href="assets/quasar-reconstruction.png" class="figure-link" data-figure data-title="Reconstructing an observed quasar light curve" data-caption="An unlensed ZTF r-band example from work in preparation. Blue points are observations. Orange curves and intervals show the model's posterior reconstruction, including gaps and extrapolation.">
+              <img src="assets/quasar-reconstruction.png" alt="Observed ZTF quasar light curve with latent-SDE posterior samples and uncertainty intervals for inpainting and extrapolation" width="1827" height="545" loading="lazy">
+              <span class="enlarge-label">View figure <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption>An observed, unlensed ZTF quasar. Blue points are data; orange curves and intervals are posterior reconstructions. From current work in preparation.</figcaption>
+          </figure>
+          <figure class="science-figure mass-figure">
+            <a href="assets/ztf-mass-predictions.png" class="figure-link" data-figure data-title="Black-hole mass inference from ZTF light curves" data-caption="Black-hole masses inferred for 550 observed ZTF quasars with supplied redshifts, compared with catalog virial mass estimates. The dashed line marks equality. The reported RMSE is 0.45 dex. From current work in preparation.">
+              <img src="assets/ztf-mass-predictions.png" alt="Black-hole masses inferred for 550 ZTF quasars versus catalog virial estimates, with error bars, an equality line, and RMSE of 0.45 dex" width="795" height="770" loading="lazy">
+              <span class="enlarge-label">View figure <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption>Black-hole mass inference for 550 ZTF quasars with supplied redshifts, compared with catalog virial estimates. From current work in preparation.</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section class="in-motion section" id="in-motion" aria-labelledby="motion-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">The science in motion</p><h2 id="motion-title">A magnifying glass that moves.</h2></div>
+          <p>These physical simulations show how evolving caustics change a quasar’s spectrum and reverberation response. Play either animation to follow an event.</p>
+        </div>
+        <div class="animation-tabs" role="group" aria-label="Choose a simulation" hidden>
+          <button type="button" class="tab-button" aria-pressed="true" data-animation-tab="transfer">Time delays &amp; transfer functions</button>
+          <button type="button" class="tab-button" aria-pressed="false" data-animation-tab="spectrum">Spectra &amp; multiband light curves</button>
+        </div>
+        <figure class="animation-figure" id="animation-transfer" data-animation-panel="transfer">
+          <div class="animation-surface">
+            <img id="transfer-image" src="assets/microlensing-transfer.png" data-still="assets/microlensing-transfer.png" data-animation="assets/microlensing-transfer.gif" alt="Simulated Q2237 image-B magnification map and six-band transfer functions, showing shifts in mean response delays" width="1972" height="789" loading="lazy">
+          </div>
+          <div class="animation-bottom">
+            <figcaption><strong>Microlensing changes more than brightness.</strong> As a caustic crosses the disk, it changes the weighting of response delays. Arrows mark shifts in the mean lag relative to the unmagnified response. Simulated Q2237+0305 image B.</figcaption>
+            <button class="button button-play" type="button" data-play="transfer-image" aria-controls="transfer-image" aria-pressed="false" hidden><span aria-hidden="true">▶</span> Play animation</button>
+          </div>
+          <noscript><p><a href="assets/microlensing-transfer.gif">Open transfer-function animation (6 MB)</a></p></noscript>
+        </figure>
+        <figure class="animation-figure" id="animation-spectrum" data-animation-panel="spectrum">
+          <div class="animation-surface">
+            <img id="spectrum-image" src="assets/microlensing-spectrum.png" data-still="assets/microlensing-spectrum.png" data-animation="assets/microlensing-spectrum.gif" alt="Simulated moving microlensing map, evolving quasar spectrum, wavelength-dependent magnification, and six-band daily light curves" width="2047" height="1279" loading="lazy">
+          </div>
+          <div class="animation-bottom">
+            <figcaption><strong>One crossing, many wavelengths.</strong> A simulated magnification pattern, evolving disk continuum, empirical emission lines, and Rubin bandpasses connect the source physics to multiband light curves. Simulated Q2237+0305 image B.</figcaption>
+            <button class="button button-play" type="button" data-play="spectrum-image" aria-controls="spectrum-image" aria-pressed="false" hidden><span aria-hidden="true">▶</span> Play animation</button>
+          </div>
+          <noscript><p><a href="assets/microlensing-spectrum.gif">Open spectral animation (10 MB)</a></p></noscript>
+        </figure>
+        <p class="animation-note">Animations load only when played. The two examples use different stellar realizations.</p>
+        <p class="sr-only" id="animation-status" role="status"></p>
+
+        <article class="follow-up-feature" id="follow-up" aria-labelledby="follow-up-title">
+          <div class="section-heading">
+            <div><p class="eyebrow">From forecasts to observations</p><h3 id="follow-up-title">Catching a caustic crossing.</h3></div>
+            <p>Event forecasts can guide high-cadence multiband and spectroscopic follow-up, catching the fine structure of a crossing as a caustic scans the accretion disk.</p>
+          </div>
+          <figure class="science-figure">
+            <a href="assets/caustic-follow-up.png" class="figure-link" data-figure data-title="Caustic-crossing spectra and follow-up" data-caption="Simulated Q2237+0305 image-B crossing with idealized mock photometric and spectroscopic visits, not observed data. Maps show caustics and 95% disk-flux contours in the six Rubin bands. In the light-curve panels, solid curves include intrinsic variability and dashed curves show microlensing alone. Time-delay-aligned differences between lensed images can suppress shared intrinsic variability, with residuals modeled jointly.">
+              <img src="assets/caustic-follow-up.png" alt="Simulated Q2237 caustic crossing with before, crossing, and after spectra and magnification maps, mock follow-up measurements, and a light-curve zoom marking the ISCO crossing dip" width="2081" height="1180" loading="lazy">
+              <span class="enlarge-label">View figure <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption>Simulated Q2237+0305 image-B crossing with idealized mock follow-up observations. Spectra and multiband light curves probe different disk regions. In the light-curve panels, solid curves include intrinsic variability and dashed curves show microlensing alone. Time-delay-aligned image differences can suppress the shared intrinsic signal, helping reveal crossing structure.</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section class="publications section container" id="publications" aria-labelledby="publications-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">02 / Publications</p><h2 id="publications-title">Selected work.</h2></div>
+        <div class="section-links"><a class="text-link" href="https://scholar.google.com/citations?hl=en&amp;user=cvoJrPEAAAAJ">All papers on Scholar <span aria-hidden="true">↗</span></a><a class="text-link" href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Fagin%2C%20Joshua%22&amp;sort=date%20desc">Bibliography on ADS <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="publication-filters" role="group" aria-label="Filter selected publications" hidden>
+        <button type="button" aria-pressed="true" data-filter="all">All selected</button>
+        <button type="button" aria-pressed="false" data-filter="first-author">First author</button>
+        <button type="button" aria-pressed="false" data-filter="collaborative">Collaborative</button>
+      </div>
+      <p class="sr-only" id="publication-count" role="status"></p>
+      <ol class="publication-list">
+        <li data-publication="first-author">
+          <div class="publication-year">2025</div><article><p class="publication-venue">The Astrophysical Journal · 988, 59</p><h3><a href="https://doi.org/10.3847/1538-4357/addabc">Joint Modeling of Quasar Variability and Accretion Disk Reprocessing using Latent Stochastic Differential Equations</a></h3><p class="publication-authors"><strong>J. Fagin</strong>, J. Chan, H. Best, et al.</p><p>A generative model that embeds accretion-disk physics in learned quasar variability.</p><div class="paper-links"><a href="https://doi.org/10.3847/1538-4357/addabc">Paper ↗</a><a href="https://arxiv.org/abs/2410.18423">arXiv ↗</a><a href="https://github.com/JFagin/Quasar_ML">Code ↗</a></div></article>
+        </li>
+        <li data-publication="first-author">
+          <div class="publication-year">2025</div><article><p class="publication-venue">The Astrophysical Journal · 981, 61</p><h3><a href="https://doi.org/10.3847/1538-4357/adaebb">Predicting High-magnification Events in Microlensed Quasars in the Era of LSST using Recurrent Neural Networks</a></h3><p class="publication-authors"><strong>J. Fagin</strong>, E. Paic, F. Neira, et al.</p><p>Forecasting microlensing events from sparse, survey-like light curves to guide follow-up observations.</p><div class="paper-links"><a href="https://doi.org/10.3847/1538-4357/adaebb">Paper ↗</a><a href="https://github.com/JFagin/Quasar_Event_Predictor">Code ↗</a></div></article>
+        </li>
+        <li data-publication="collaborative">
+          <div class="publication-year">2025</div><article><p class="publication-venue">Monthly Notices of the Royal Astronomical Society · 539, 1269</p><h3><a href="https://doi.org/10.1093/mnras/staf499">Amoeba: An AGN Model of Optical Emissions Beyond steady-state Accretion discs</a></h3><p class="publication-authors">H. Best, M. O’Dowd, <strong>J. Fagin</strong>, J. Chan &amp; B. Ierace</p><div class="paper-links"><a href="https://doi.org/10.1093/mnras/staf499">Paper ↗</a></div></article>
+        </li>
+        <li data-publication="collaborative">
+          <div class="publication-year">2025</div><article><p class="publication-venue">The Astrophysical Journal · 978, 54</p><h3><a href="https://doi.org/10.3847/1538-4357/ad93af">Reverberation Mapping of Lamp-post and Wind Structures in Accretion Thin Disks</a></h3><p class="publication-authors">J. Chan, <strong>J. Fagin</strong>, H. Best &amp; M. O’Dowd</p><div class="paper-links"><a href="https://doi.org/10.3847/1538-4357/ad93af">Paper ↗</a></div></article>
+        </li>
+        <li data-publication="first-author">
+          <div class="publication-year">2024</div><article><p class="publication-venue">The Astrophysical Journal · 965, 104</p><h3><a href="https://doi.org/10.3847/1538-4357/ad2988">Latent Stochastic Differential Equations for Modeling Quasar Variability and Inferring Black Hole Properties</a></h3><p class="publication-authors"><strong>J. Fagin</strong>, J. W. Park, H. Best, et al.</p><p>Learning continuous-time quasar variability from irregular observations.</p><div class="paper-links"><a href="https://doi.org/10.3847/1538-4357/ad2988">Paper ↗</a><a href="https://github.com/JFagin/latent_SDE">Code ↗</a></div></article>
+        </li>
+        <li data-publication="first-author">
+          <div class="publication-year">2024</div><article><p class="publication-venue">Monthly Notices of the Royal Astronomical Society · 532, 2248</p><h3><a href="https://doi.org/10.1093/mnras/stae1593">Measuring the Substructure Mass Power Spectrum of 23 SLACS Strong Galaxy-Galaxy Lenses with Convolutional Neural Networks</a></h3><p class="publication-authors"><strong>J. Fagin</strong>, G. Vernardos, G. Tsagkatakis, et al.</p><p>Using strong-lens images to constrain the small-scale structure of dark matter.</p><div class="paper-links"><a href="https://doi.org/10.1093/mnras/stae1593">Paper ↗</a><a href="https://github.com/JFagin/GRF_ML">Code ↗</a></div></article>
+        </li>
+        <li data-publication="collaborative">
+          <div class="publication-year">2024</div><article><p class="publication-venue">Monthly Notices of the Royal Astronomical Society · 531, 1095</p><h3><a href="https://doi.org/10.1093/mnras/stae1182">Resolving the Vicinity of Supermassive Black Holes with Gravitational Microlensing</a></h3><p class="publication-authors">H. Best, <strong>J. Fagin</strong>, G. Vernardos &amp; M. O’Dowd</p><p>Probing the inner disk through caustic-crossing structure, including observed Q2237 events.</p><div class="paper-links"><a href="https://doi.org/10.1093/mnras/stae1182">Paper ↗</a></div></article>
+        </li>
+      </ol>
+      <details class="ongoing-work">
+        <summary>Current manuscripts <span>Work in progress</span></summary>
+        <p class="manuscript-note">Listed separately from refereed publications. Public paper links will be added when available.</p>
+        <ul>
+          <li><h3>Microcaustics: Fast GPU-Accelerated Dynamical Microlensing of Time-Dependent Extended Sources</h3><p>J. Fagin et al. · Manuscript · <a href="https://github.com/JFagin/microcaustics">Software available ↗</a></p></li>
+          <li><h3>Neglecting Dynamical Microlensing Can Bias Accretion Disk Size Measurements at a Population Level</h3><p>J. Fagin et al. · In preparation</p></li>
+          <li><h3>Physics-Embedded Simulation-Based Inference of Quasar Accretion Disk Reprocessing with Latent Stochastic Differential Equations</h3><p>J. Fagin et al. · In preparation</p></li>
+          <li><h3>Automated Caustic-Crossing Detection and Accretion-Disk Inference from Quasar Microlensing</h3><p>J. Chan, J. Fagin, M. O’Dowd &amp; S. Miskiewicz · Submitted to A&amp;A</p></li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="software section" id="software" aria-labelledby="software-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">03 / Scientific software</p><h2 id="software-title">Tools to make the science possible.</h2></div>
+          <p>Open code, physical models, and worked examples for time-domain astronomy.</p>
+        </div>
+        <article class="software-feature" id="microcaustics">
+          <div><p class="eyebrow">Python · PyTorch · Triton</p><h3>Microcaustics</h3><p>A GPU-accelerated simulator for dynamical gravitational microlensing of extended, evolving sources. Moving stars, stellar mass distributions, relativistic disks, spectra, and caustic labels can be combined in one light-curve workflow.</p><div class="paper-links"><a href="https://github.com/JFagin/microcaustics">Repository ↗</a><a href="https://github.com/JFagin/microcaustics/tree/main/examples/notebooks">Tutorial notebooks ↗</a></div></div>
+        </article>
+        <div class="software-grid">
+          <article><span class="small-label">Variability &amp; disk physics</span><h3><a href="https://github.com/JFagin/Quasar_ML">Quasar ML <span aria-hidden="true">↗</span></a></h3><p>Physics-embedded latent SDEs for joint modeling of quasar variability and accretion-disk reprocessing.</p></article>
+          <article><span class="small-label">Continuous-time inference</span><h3><a href="https://github.com/JFagin/latent_SDE">Latent SDE <span aria-hidden="true">↗</span></a></h3><p>Reconstructing irregular quasar light curves and inferring black-hole properties with neural stochastic dynamics.</p></article>
+          <article><span class="small-label">Event forecasting</span><h3><a href="https://github.com/JFagin/Quasar_Event_Predictor">Quasar Event Predictor <span aria-hidden="true">↗</span></a></h3><p>Recurrent neural networks for predicting microlensing high-magnification events in LSST-like monitoring.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section container" id="about" aria-labelledby="about-title">
+      <div class="section-heading"><div><p class="eyebrow">04 / Background</p><h2 id="about-title">Research, teaching &amp; community.</h2></div><a class="text-link" href="https://www.linkedin.com/in/joshua-fagin-3a5185193/">LinkedIn <span aria-hidden="true">↗</span></a></div>
+      <div class="about-grid">
+        <div>
+          <h3 class="subsection-title">Appointments &amp; education</h3>
+          <ol class="timeline">
+            <li><p class="timeline-date">2026–present</p><h4>Stony Brook University</h4><p>Postdoctoral Researcher in Astrophysics and Machine Learning<br><span>Working with Simon Birrer</span></p></li>
+            <li><p class="timeline-date">2025–2026</p><h4>CUNY &amp; American Museum of Natural History</h4><p>Postdoctoral Researcher<br><span>Working with Matthew O’Dowd</span></p></li>
+            <li><p class="timeline-date">2020–2025</p><h4>CUNY Graduate Center</h4><p>Ph.D. in Physics<br><a href="https://academicworks.cuny.edu/gc_etds/6405/">Thesis on machine learning for quasar variability and strong lensing ↗</a></p></li>
+            <li><p class="timeline-date">2016–2020</p><h4>Cornell University</h4><p>B.S. in Physics &amp; B.S. in Mathematics</p></li>
+          </ol>
+        </div>
+        <div class="community">
+          <article><h3>Preparing for Rubin</h3><p>I co-lead a quasar-variability task force in the Rubin AGN Science Collaboration and participate in the Dark Energy and Strong Lensing Science Collaborations. I am also a member of FutureLens.</p><p>My research direction is to connect survey monitoring to calibrated parameter inference, light-curve reconstruction, and timely alerts for multiband and spectroscopic follow-up.</p></article>
+          <article><h3>Teaching</h3><p>I taught nine undergraduate physics laboratory sections at CUNY Lehman College in the Bronx, covering mechanics, electromagnetism, and sound.</p><p>I develop open scientific-software tutorials and am interested in making time-series inference, GPU computing, and machine learning more accessible to astronomy students.</p></article>
+          <article><h3>Across astronomy and AI</h3><p>My latent-SDE work received a spotlight presentation at the ICLR 2023 Physics for Machine Learning Workshop. I have presented research at astronomy and machine-learning meetings, including Rubin science-collaboration meetings.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <div><p class="eyebrow">Let’s connect</p><h2 id="contact-title">Questions, ideas,<br>or a new collaboration?</h2><p>I’m interested in quasar physics, strong lensing, time-domain surveys, and machine learning for physical science.</p></div>
+        <div class="contact-details"><a class="email-link" href="mailto:joshua.fagin@stonybrook.edu">joshua.fagin@stonybrook.edu <span aria-hidden="true">↗</span></a><p>Department of Physics and Astronomy<br>Stony Brook University</p><div class="profile-links"><a href="https://scholar.google.com/citations?hl=en&amp;user=cvoJrPEAAAAJ">Scholar ↗</a><a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Fagin%2C%20Joshua%22&amp;sort=date%20desc">ADS ↗</a><a href="https://github.com/JFagin">GitHub ↗</a><a href="https://orcid.org/0000-0001-8723-6136">ORCID ↗</a></div></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer container"><p>© <span id="year">2026</span> Joshua Fagin</p><p>Astrophysics &amp; machine learning</p><a href="#home">Back to top ↑</a></footer>
+
+  <dialog class="figure-dialog" id="figure-dialog" aria-labelledby="figure-title">
+    <div class="dialog-header"><h2 id="figure-title">Research figure</h2><button type="button" class="dialog-close" aria-label="Close figure">Close ×</button></div>
+    <img id="dialog-image" alt="">
+    <p id="dialog-caption"></p>
+  </dialog>
+</body>
+</html>
