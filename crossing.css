@@ -1,0 +1,16 @@
+.crossing-controls { display:grid; grid-template-columns:110px 200px minmax(250px,1fr); gap:10px; align-items:center; max-width:740px; margin:12px auto 0; }
+.crossing-controls select, .crossing-controls button { font:inherit; font-size:13px; color:var(--ink); background:white; border:1px solid #becac3; border-radius:3px; min-height:44px; }
+.crossing-controls select { width:100%; padding:7px 8px; cursor:pointer; }
+.crossing-controls select:focus-visible { outline:3px solid var(--teal); outline-offset:3px; }
+.crossing-navigation { display:flex; gap:5px; align-items:center; }
+.crossing-navigation > button { padding:4px 10px; }
+#crossing-values { flex:1; display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+#crossing-values button { padding:4px 7px; border-color:transparent; background:transparent; white-space:nowrap; font-variant-numeric:tabular-nums; }
+#crossing-values button[aria-pressed="true"] { color:var(--teal); border-color:#b4cbc3; background:#e3ede7; font-weight:600; }
+.crossing-controls button:disabled { opacity:.4; cursor:default; }
+.crossing-controls button:hover:not(:disabled) { border-color:var(--teal); }
+#crossing-image { width:100%; }
+#crossing-error { color:#9e3020; font-size:13px; }
+@media(max-width:850px) { .crossing-controls { grid-template-columns:100px 170px minmax(220px,1fr); gap:6px; } }
+@media(max-width:640px) { .crossing-controls { grid-template-columns:110px minmax(0,1fr); max-width:400px; } .crossing-navigation { grid-column:1/-1; } }
+@media print { .crossing-controls { display:none !important; } }

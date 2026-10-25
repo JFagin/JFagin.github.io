@@ -15,6 +15,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=20261010-rubin">
   <script src="script.js" defer></script>
+  <link rel="stylesheet" href="crossing.css?v=20261025">
+  <script src="crossing-data.js?v=20261025" defer></script>
+  <script src="crossing.js?v=20261025" defer></script>
   <title>Joshua Fagin | Astrophysics &amp; Machine Learning</title>
   <script type="application/ld+json">
   {
@@ -233,12 +236,29 @@
             <div><p class="eyebrow">From forecasts to observations</p><h3 id="follow-up-title">Catching a caustic crossing.</h3></div>
             <p>Event forecasts can guide high-cadence multiband and spectroscopic follow-up, catching the fine structure of a crossing as a caustic scans the accretion disk.</p>
           </div>
-          <figure class="science-figure">
-            <a href="assets/caustic-follow-up.png" class="figure-link" data-figure data-title="Caustic-crossing spectra and follow-up" data-caption="Simulated Q2237+0305 image-B crossing with idealized mock photometric and spectroscopic visits, not observed data. Maps show caustics and 95% disk-flux contours in the six Rubin bands. In the light-curve panels, solid curves include intrinsic variability and dashed curves show microlensing alone. Time-delay-aligned differences between lensed images can suppress shared intrinsic variability, with residuals modeled jointly.">
-              <img src="assets/caustic-follow-up.png" alt="Simulated Q2237 caustic crossing with before, crossing, and after spectra and magnification maps, mock follow-up measurements, and a light-curve zoom marking the ISCO crossing dip" width="2081" height="1180" loading="lazy">
+          <figure class="science-figure crossing-explorer">
+            <a id="crossing-figure" href="assets/crossing/pa90/reference.png" class="figure-link" data-figure data-title="Caustic crossing at position angle 90°" data-caption="Simulated optical and X-ray spectra, light curves, and magnification maps. X-ray emission is experimental and follow-up measurements are illustrative, not observations.">
+              <img id="crossing-image" src="assets/crossing/pa90/reference.png" alt="Simulated caustic crossing at position angle 90 degrees with optical and X-ray spectra, light curves and magnification maps" width="2068" height="1194" loading="lazy">
               <span class="enlarge-label">View figure <span aria-hidden="true">↗</span></span>
             </a>
-            <figcaption>Simulated Q2237+0305 image-B crossing with idealized mock follow-up observations. Spectra and multiband light curves probe different disk regions. In the light-curve panels, solid curves include intrinsic variability and dashed curves show microlensing alone. Time-delay-aligned image differences can suppress the shared intrinsic signal, helping reveal crossing structure.</figcaption>
+            <div class="crossing-controls" id="crossing-controls" hidden>
+              <label class="sr-only" for="crossing-orientation">Reference position angle</label>
+              <select id="crossing-orientation" title="Reference position angle for the parameter series"><option value="0">PA 0°</option><option value="90" selected>PA 90°</option></select>
+              <label class="sr-only" for="crossing-parameter">Source parameter</label>
+              <select id="crossing-parameter">
+                <option value="mass">Black hole mass</option><option value="spin">Black hole spin</option>
+                <option value="slope">Temperature slope</option><option value="inclination">Disk inclination</option>
+                <option value="angle">Position angle</option><option value="corona">Corona width</option>
+              </select>
+              <div class="crossing-navigation">
+                <button id="crossing-previous" type="button" aria-label="Previous parameter value">←</button>
+                <div id="crossing-values" role="group" aria-label="Simulated values"></div>
+                <button id="crossing-next" type="button" aria-label="Next parameter value">→</button>
+              </div>
+            </div>
+            <figcaption>Explore a simulated caustic crossing by varying one source parameter at a time. Compare the optical and X-ray spectra, light curves, and disk images. X-ray emission is experimental and follow-up measurements are illustrative. Click the figure to enlarge.</figcaption>
+            <p id="crossing-status" class="sr-only" role="status" aria-live="polite"></p>
+            <p id="crossing-error" role="alert" hidden></p>
           </figure>
         </article>
       </div>
