@@ -95,7 +95,7 @@
     <section class="research section" id="research" aria-labelledby="research-title">
       <div class="container">
         <div class="section-heading">
-          <div><p class="eyebrow">01 / Research</p><h2 id="research-title">Learning from a changing sky.</h2></div>
+          <div><p class="eyebrow">Research</p><h2 id="research-title">Learning from a changing sky.</h2></div>
           <p>I build physical simulators and inference methods to connect time-domain observations to the systems that produce them.</p>
         </div>
 
@@ -156,17 +156,14 @@
           </figure>
           <div class="research-topics">
             <article>
-              <span class="topic-index">01</span>
               <h3>Quasar accretion disks</h3>
               <p>Reverberation measures how an accretion disk responds to changing illumination. Microlensing magnifies different parts of the disk. Together, they can reveal its size, temperature structure, and inner-disk structure.</p>
             </article>
             <article>
-              <span class="topic-index">02</span>
               <h3>Dynamical microlensing</h3>
               <p>Stars move, so the magnification pattern evolves. I developed <a href="#microcaustics">Microcaustics</a> to make these simulations practical on GPUs and study how stellar motion and mass distributions affect inference.</p>
             </article>
             <article>
-              <span class="topic-index">03</span>
               <h3>Cosmology &amp; compact objects</h3>
               <p>Strongly lensed quasars probe compact matter in distant galaxies and provide time delays for measuring cosmic expansion. My goal is joint time-series inference that accounts for microlensing rather than treating it only as a nuisance.</p>
             </article>
@@ -266,9 +263,24 @@
 
     <section class="publications section container" id="publications" aria-labelledby="publications-title">
       <div class="section-heading">
-        <div><p class="eyebrow">02 / Publications</p><h2 id="publications-title">Selected work.</h2></div>
+        <div><p class="eyebrow">Publications</p><h2 id="publications-title">Selected work.</h2></div>
         <div class="section-links"><a class="text-link" href="https://scholar.google.com/citations?hl=en&amp;user=cvoJrPEAAAAJ">All papers on Scholar <span aria-hidden="true">↗</span></a><a class="text-link" href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Fagin%2C%20Joshua%22&amp;sort=date%20desc">Bibliography on ADS <span aria-hidden="true">↗</span></a></div>
       </div>
+      <section class="ongoing-work" aria-labelledby="manuscripts-title">
+        <h3 id="manuscripts-title">Preprints and submitted papers</h3>
+        <ul>
+          <li><h4><a href="https://arxiv.org/abs/2610.19703">Microcaustics: Fast GPU-Accelerated Dynamical Microlensing of Time-Dependent Extended Sources</a></h4><p><strong>J. Fagin</strong> et al. · 2026 · Submitted · <a href="https://arxiv.org/abs/2610.19703">arXiv:2610.19703 ↗</a> · <a href="https://github.com/JFagin/microcaustics">Software ↗</a></p></li>
+          <li><h4><a href="https://arxiv.org/abs/2610.24195">Modeling Multi-band Active Galactic Nuclei Lightcurves Using an Self-supervised Attentive Neural Process Network</a></h4><p>Tzuken Shen, Chengcheng Xin, <strong>Joshua Fagin</strong>, Ashley Villar, Matthew J. Graham &amp; K.E. Saavik Ford · 2026 · Submitted to ApJ · <a href="https://arxiv.org/abs/2610.24195">arXiv:2610.24195 ↗</a></p></li>
+          <li><h4>Automated Caustic-Crossing Detection and Accretion-Disk Inference from Quasar Microlensing</h4><p>J. Chan, <strong>J. Fagin</strong>, M. O’Dowd &amp; S. Miskiewicz · Submitted to A&amp;A</p></li>
+        </ul>
+        <h3>Work in preparation</h3>
+        <ul>
+          <li><h4>Neglecting Dynamical Microlensing Can Bias Accretion Disk Size Measurements at a Population Level</h4><p><strong>J. Fagin</strong> et al. · In preparation</p></li>
+          <li><h4>Physics-Embedded Simulation-Based Inference of Quasar Accretion Disk Reprocessing with Latent Stochastic Differential Equations</h4><p><strong>J. Fagin</strong> et al. · In preparation</p></li>
+          <li><h4>GOLI-net: Deep-learning deblending of strongly lensed quasar–galaxy fiber spectra</h4><p>M. Espinoza Ortiz, T. Anguita, <strong>J. Fagin</strong> · In preparation</p></li>
+        </ul>
+      </section>
+      <h3 class="published-heading">Selected refereed publications</h3>
       <div class="publication-filters" role="group" aria-label="Filter selected publications" hidden>
         <button type="button" aria-pressed="true" data-filter="all">All selected</button>
         <button type="button" aria-pressed="false" data-filter="first-author">First author</button>
@@ -298,27 +310,16 @@
           <div class="publication-year">2024</div><article><p class="publication-venue">Monthly Notices of the Royal Astronomical Society · 531, 1095</p><h3><a href="https://doi.org/10.1093/mnras/stae1182">Resolving the Vicinity of Supermassive Black Holes with Gravitational Microlensing</a></h3><p class="publication-authors">H. Best, <strong>J. Fagin</strong>, G. Vernardos &amp; M. O’Dowd</p><p>Probing the inner disk through caustic-crossing structure, including observed Q2237 events.</p><div class="paper-links"><a href="https://doi.org/10.1093/mnras/stae1182">Paper ↗</a></div></article>
         </li>
       </ol>
-      <details class="ongoing-work">
-        <summary>Current manuscripts <span>Work in progress</span></summary>
-        <p class="manuscript-note">Listed separately from refereed publications. Public paper links will be added when available.</p>
-        <ul>
-          <li><h3><a href="https://arxiv.org/abs/2610.24195">Modeling Multi-band Active Galactic Nuclei Lightcurves Using an Self-supervised Attentive Neural Process Network</a></h3><p>Tzuken Shen, Chengcheng Xin, <strong>Joshua Fagin</strong>, Ashley Villar, Matthew J. Graham &amp; K.E. Saavik Ford · 2026 · Submitted to ApJ · <a href="https://arxiv.org/abs/2610.24195">arXiv:2610.24195 ↗</a></p></li>
-          <li><h3>Microcaustics: Fast GPU-Accelerated Dynamical Microlensing of Time-Dependent Extended Sources</h3><p>J. Fagin et al. · Manuscript · <a href="https://github.com/JFagin/microcaustics">Software available ↗</a></p></li>
-          <li><h3>Neglecting Dynamical Microlensing Can Bias Accretion Disk Size Measurements at a Population Level</h3><p>J. Fagin et al. · In preparation</p></li>
-          <li><h3>Physics-Embedded Simulation-Based Inference of Quasar Accretion Disk Reprocessing with Latent Stochastic Differential Equations</h3><p>J. Fagin et al. · In preparation</p></li>
-          <li><h3>Automated Caustic-Crossing Detection and Accretion-Disk Inference from Quasar Microlensing</h3><p>J. Chan, J. Fagin, M. O’Dowd &amp; S. Miskiewicz · Submitted to A&amp;A</p></li>
-        </ul>
-      </details>
     </section>
 
     <section class="software section" id="software" aria-labelledby="software-title">
       <div class="container">
         <div class="section-heading">
-          <div><p class="eyebrow">03 / Scientific software</p><h2 id="software-title">Tools to make the science possible.</h2></div>
+          <div><p class="eyebrow">Scientific software</p><h2 id="software-title">Tools to make the science possible.</h2></div>
           <p>Open code, physical models, and worked examples for time-domain astronomy.</p>
         </div>
         <article class="software-feature" id="microcaustics">
-          <div><p class="eyebrow">Python · PyTorch · Triton</p><h3>Microcaustics</h3><p>A GPU-accelerated simulator for dynamical gravitational microlensing of extended, evolving sources. Moving stars, stellar mass distributions, relativistic disks, spectra, and caustic labels can be combined in one light-curve workflow.</p><div class="paper-links"><a href="https://github.com/JFagin/microcaustics">Repository ↗</a><a href="https://github.com/JFagin/microcaustics/tree/main/examples/notebooks">Tutorial notebooks ↗</a></div></div>
+          <div><p class="eyebrow">Python · PyTorch · Triton</p><h3>Microcaustics</h3><p>A GPU-accelerated simulator for dynamical gravitational microlensing of extended, evolving sources. Moving stars, stellar mass distributions, relativistic disks, spectra, and caustic labels can be combined in one light-curve workflow.</p><div class="paper-links"><a href="https://arxiv.org/abs/2610.19703">Paper ↗</a><a href="https://github.com/JFagin/microcaustics">Repository ↗</a><a href="https://github.com/JFagin/microcaustics/tree/main/examples/notebooks">Tutorial notebooks ↗</a></div></div>
         </article>
         <div class="software-grid">
           <article><span class="small-label">Variability &amp; disk physics</span><h3><a href="https://github.com/JFagin/Quasar_ML">Quasar ML <span aria-hidden="true">↗</span></a></h3><p>Physics-embedded latent SDEs for joint modeling of quasar variability and accretion-disk reprocessing.</p></article>
@@ -329,7 +330,7 @@
     </section>
 
     <section class="about section container" id="about" aria-labelledby="about-title">
-      <div class="section-heading"><div><p class="eyebrow">04 / Background</p><h2 id="about-title">Research, teaching &amp; community.</h2></div><a class="text-link" href="https://www.linkedin.com/in/joshua-fagin-3a5185193/">LinkedIn <span aria-hidden="true">↗</span></a></div>
+      <div class="section-heading"><div><p class="eyebrow">Background</p><h2 id="about-title">Research, teaching &amp; community.</h2></div><a class="text-link" href="https://www.linkedin.com/in/joshua-fagin-3a5185193/">LinkedIn <span aria-hidden="true">↗</span></a></div>
       <div class="about-grid">
         <div>
           <h3 class="subsection-title">Appointments &amp; education</h3>

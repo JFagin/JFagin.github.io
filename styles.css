@@ -141,7 +141,9 @@ h1 { font-size: clamp(56px, 6.3vw, 83px); line-height: 1.12; letter-spacing: -3.
 .manuscript-note { color: var(--muted); font-size: 12px; }
 .ongoing-work ul { list-style: none; padding: 0; margin-bottom: 0; }
 .ongoing-work li { padding: 19px 0; border-top: 1px solid var(--line); }
-.ongoing-work h3 { font-size: 15px; line-height: 1.5; }
+.ongoing-work h3 { margin: 24px 0 16px; font-size: 18px; line-height: 1.5; }
+.ongoing-work h4 { font-size: 15px; line-height: 1.5; }
+.published-heading { margin: 36px 0 20px; font-size: 18px; }
 .ongoing-work li p { font-size: 12px; color: var(--muted); margin-top: 6px; }
 .software { background: white; border-block: 1px solid var(--line); }
 .software-feature { padding: 36px; background: #f3f5f1; border: 1px solid #dbe2d9; border-radius: 4px; }
