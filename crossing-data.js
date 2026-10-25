@@ -119,6 +119,24 @@ window.CROSSING_EXAMPLES = {
           "inclination": 60.0,
           "angle": 0.0,
           "corona": 6.0
+        },
+        "spin_-0.99": {
+          "src": "assets/crossing/pa0/spin_-0.99.png?v=7d78e25c091e",
+          "mass": 9.08,
+          "spin": -0.99,
+          "slope": 0.75,
+          "inclination": 60.0,
+          "angle": 0.0,
+          "corona": 3.0
+        },
+        "spin_0.99": {
+          "src": "assets/crossing/pa0/spin_0.99.png?v=9888c412a3ed",
+          "mass": 9.08,
+          "spin": 0.99,
+          "slope": 0.75,
+          "inclination": 60.0,
+          "angle": 0.0,
+          "corona": 3.0
         }
       }
     },
@@ -239,6 +257,24 @@ window.CROSSING_EXAMPLES = {
           "slope": 0.75,
           "inclination": 60.0,
           "angle": 45.0,
+          "corona": 3.0
+        },
+        "spin_-0.99": {
+          "src": "assets/crossing/pa90/spin_-0.99.png?v=dfd6d6cc18c2",
+          "mass": 9.08,
+          "spin": -0.99,
+          "slope": 0.75,
+          "inclination": 60.0,
+          "angle": 90.0,
+          "corona": 3.0
+        },
+        "spin_0.99": {
+          "src": "assets/crossing/pa90/spin_0.99.png?v=94e555219ccf",
+          "mass": 9.08,
+          "spin": 0.99,
+          "slope": 0.75,
+          "inclination": 60.0,
+          "angle": 90.0,
           "corona": 3.0
         }
       }

@@ -4,7 +4,7 @@
 .crossing-controls select:focus-visible { outline:3px solid var(--teal); outline-offset:3px; }
 .crossing-navigation { display:flex; gap:5px; align-items:center; }
 .crossing-navigation > button { padding:4px 10px; }
-#crossing-values { flex:1; display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+#crossing-values { flex:1; display:grid; grid-template-columns:repeat(var(--crossing-value-count,3),minmax(0,1fr)); gap:4px; }
 #crossing-values button { padding:4px 7px; border-color:transparent; background:transparent; white-space:nowrap; font-variant-numeric:tabular-nums; }
 #crossing-values button[aria-pressed="true"] { color:var(--teal); border-color:#b4cbc3; background:#e3ede7; font-weight:600; }
 .crossing-controls button:disabled { opacity:.4; cursor:default; }
