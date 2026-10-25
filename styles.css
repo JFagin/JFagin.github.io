@@ -273,6 +273,11 @@ body.dialog-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+.simulator-callout { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:22px 24px; margin:0 0 28px; border:1px solid var(--line); border-radius:6px; }
+.simulator-callout h3 { margin:0 0 6px; font-size:22px; }
+.simulator-callout p { margin:0; max-width:650px; }
+.simulator-callout .button { flex-shrink:0; }
+@media(max-width:760px) { .simulator-callout { flex-direction:column; align-items:flex-start; padding:18px; gap:16px; } }
 @media print {
   body { font-size: 11pt; background: white; }
   .container { width: 100%; }
