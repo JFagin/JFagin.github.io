@@ -23,6 +23,20 @@ document.addEventListener("keydown", event => {
 });
 window.matchMedia("(min-width: 761px)").addEventListener("change", closeMenu);
 
+const descriptionToggle = document.querySelector("#publication-descriptions");
+const descriptions = document.querySelectorAll("#publications .publication-list article > p:not(.publication-authors):not(.publication-venue)");
+descriptionToggle.closest("label").hidden = false;
+function updateDescriptions() {
+  descriptions.forEach(description => { description.hidden = !descriptionToggle.checked; });
+}
+descriptionToggle.addEventListener("change", updateDescriptions);
+// Start each page visit with descriptions visible, including restored form state.
+window.addEventListener("pageshow", () => {
+  descriptionToggle.checked = true;
+  updateDescriptions();
+});
+updateDescriptions();
+
 const filters = document.querySelector(".publication-filters");
 const publications = [...document.querySelectorAll("[data-publication]")];
 filters.hidden = false;

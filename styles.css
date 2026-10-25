@@ -120,6 +120,13 @@ h1 { font-size: clamp(56px, 6.3vw, 83px); line-height: 1.12; letter-spacing: -3.
 .follow-up-feature .figure-link { padding: 18px 18px 0; border: 1px solid #cbd6cf; border-radius: 4px; }
 .follow-up-feature figcaption { border-top: 0; padding-top: 15px; }
 .section-links { display: grid; justify-items: start; gap: 12px; }
+.publication-description-toggle { display: flex; align-items: center; gap: 9px; width: fit-content; min-height: 44px; margin: -12px 0 20px; font-size: 13px; cursor: pointer; }
+.publication-description-toggle input { appearance: none; width: 34px; height: 20px; margin: 0; border: 1px solid var(--muted); border-radius: 12px; background: var(--muted); cursor: pointer; }
+.publication-description-toggle input::before { content: ""; display: block; width: 14px; height: 14px; margin: 2px; border-radius: 50%; background: white; }
+.publication-description-toggle input:checked { background: var(--teal); border-color: var(--teal); }
+.publication-description-toggle input:checked::before { transform: translateX(14px); }
+.publication-description-toggle input:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+@media print { .publication-description-toggle { display: none; } }
 .publication-filters { display: flex; flex-wrap: wrap; gap: 9px; margin: -9px 0 20px; }
 .publication-filters button { border: 1px solid var(--line); padding: 6px 15px; background: transparent; border-radius: 3px; font-size: 12px; color: var(--muted); min-height: 40px; }
 .publication-filters button[aria-pressed="true"] { border-color: var(--ink); color: white; background: var(--ink); }
