@@ -59,7 +59,7 @@ const navSections = [...nav.querySelectorAll('a[href^="#"]')]
 let navFramePending = false;
 function updateCurrentSection() {
   navFramePending = false;
-  const offset = document.querySelector(".header-inner").getBoundingClientRect().height + 32;
+  const offset = document.querySelector(".header-inner").getBoundingClientRect().height + 64;
   let current = null;
   let currentTop = -Infinity;
   for (const item of navSections) {
