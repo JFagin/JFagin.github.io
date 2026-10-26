@@ -77,10 +77,13 @@ html.embedded body{background:transparent;overflow:hidden}html.embedded main{max
 </main><script type="module">// Dimensionless point-mass lens equation. No dependency on microcaustics.
 const KAPPA=0.20, SHEAR=0.25, SOURCE_HALF=3, LENS_HALF=3.6, SHOOT_HALF=8;
 const AX=1-KAPPA-SHEAR, AY=1-KAPPA+SHEAR;
+// Advance the original three-star trajectory by 3.85 t_E and translate it
+// to bring a prominent fold across the disk at t/t_E ~ 0.75.
+// Masses, velocities, disk parameters, and playback speed are unchanged.
 const DEFAULT_STARS=[
-  {x:-0.7,y:-0.1,m:1,vx:0.11,vy:0.06},
-  {x:0.65,y:0.1,m:0.65,vx:-0.07,vy:0.12},
-  {x:0.05,y:1.05,m:0.3,vx:0.04,vy:-0.09}
+  {x:-0.8496,y:-0.2854,m:1,vx:0.11,vy:0.06},
+  {x:-0.1926,y:0.1456,m:0.65,vx:-0.07,vy:0.12},
+  {x:-0.3691,y:0.2871,m:0.3,vx:0.04,vy:-0.09}
 ];
 const DEFAULT_SOURCE={radius:0.25,inclination:45,angle:30,hole:0.2,x:0.1,y:0};
 // Paper's Salpeter distribution, in solar masses. The ensemble mean is 0.3,
