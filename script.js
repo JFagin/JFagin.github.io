@@ -4,24 +4,90 @@ document.documentElement.classList.add("js");
 
 const menu = document.querySelector(".menu-toggle");
 const nav = document.querySelector("#site-nav");
+const navGroups = [...nav.querySelectorAll(".nav-group")];
 menu.hidden = false;
+function closeDropdowns(except = null) {
+  navGroups.forEach(group => { if (group !== except) group.open = false; });
+}
 function closeMenu() {
   nav.classList.remove("is-open");
   menu.setAttribute("aria-expanded", "false");
+  closeDropdowns();
 }
 menu.addEventListener("click", () => {
   const opened = menu.getAttribute("aria-expanded") !== "true";
   menu.setAttribute("aria-expanded", String(opened));
   nav.classList.toggle("is-open", opened);
+  if (!opened) closeDropdowns();
 });
-nav.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+navGroups.forEach(group => group.addEventListener("toggle", () => {
+  if (group.open) closeDropdowns(group);
+}));
+nav.querySelectorAll("a").forEach(link => link.addEventListener("click", event => {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  closeMenu();
+  const target = document.getElementById(link.hash.slice(1));
+  if (target) {
+    target.setAttribute("tabindex", "-1");
+    target.focus({preventScroll:true});
+  }
+}));
+document.addEventListener("click", event => {
+  if (!event.target.closest(".site-header")) closeMenu();
+});
+nav.addEventListener("focusout", event => {
+  if (event.relatedTarget && !nav.contains(event.relatedTarget)) closeDropdowns();
+});
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && nav.classList.contains("is-open")) {
+  if (event.key !== "Escape") return;
+  const openGroup = navGroups.find(group => group.open);
+  if (openGroup) {
+    closeDropdowns();
+    openGroup.querySelector("summary").focus();
+  } else if (nav.classList.contains("is-open")) {
     closeMenu();
     menu.focus();
   }
 });
 window.matchMedia("(min-width: 761px)").addEventListener("change", closeMenu);
+
+// Follow document order, since Research and Simulations are interleaved.
+const navSections = [...nav.querySelectorAll('a[href^="#"]')]
+  .map(link => ({link, target:document.getElementById(link.hash.slice(1))}))
+  .filter(item => item.target)
+  .sort((a,b) => a.target.compareDocumentPosition(b.target) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
+let navFramePending = false;
+function updateCurrentSection() {
+  navFramePending = false;
+  const offset = document.querySelector(".header-inner").getBoundingClientRect().height + 32;
+  let current = null;
+  let currentTop = -Infinity;
+  for (const item of navSections) {
+    const top = item.target.getBoundingClientRect().top;
+    if (top <= offset) {
+      // Side-by-side About targets share a vertical position on desktop.
+      if (current?.hash === location.hash && Math.abs(top - currentTop) < 4) continue;
+      current = item.link;
+      currentTop = top;
+    }
+  }
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) current = navSections.at(-1)?.link;
+  navSections.forEach(({link}) => {
+    if (link === current) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+  navGroups.forEach(group => group.classList.toggle("is-current", !!current && group.contains(current)));
+}
+function scheduleNavUpdate() {
+  if (navFramePending) return;
+  navFramePending = true;
+  requestAnimationFrame(updateCurrentSection);
+}
+window.addEventListener("scroll", scheduleNavUpdate, {passive:true});
+window.addEventListener("resize", scheduleNavUpdate);
+window.addEventListener("load", scheduleNavUpdate);
+window.addEventListener("hashchange", scheduleNavUpdate);
+updateCurrentSection();
 
 const descriptionToggle = document.querySelector("#publication-descriptions");
 const descriptions = document.querySelectorAll("#publications .publication-list article > p:not(.publication-authors):not(.publication-venue)");
