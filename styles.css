@@ -273,11 +273,10 @@ body.dialog-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
-.simulator-callout { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:22px 24px; margin:0 0 28px; border:1px solid var(--line); border-radius:6px; }
-.simulator-callout h3 { margin:0 0 6px; font-size:22px; }
-.simulator-callout p { margin:0; max-width:650px; }
-.simulator-callout .button { flex-shrink:0; }
-@media(max-width:760px) { .simulator-callout { flex-direction:column; align-items:flex-start; padding:18px; gap:16px; } }
+.simulator-embed { margin:0 0 48px; }
+.simulator-open { margin:0 0 16px; text-align:right; font-size:13px; }
+#microlensing-frame { display:block; width:100%; height:1450px; border:0; }
+@media(max-width:520px) { #microlensing-frame { height:2200px; } .simulator-open { text-align:left; } }
 @media print {
   body { font-size: 11pt; background: white; }
   .container { width: 100%; }

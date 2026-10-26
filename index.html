@@ -13,8 +13,9 @@
   <meta property="og:url" content="https://jfagin.github.io/">
   <link rel="canonical" href="https://jfagin.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261025-simulator">
+  <link rel="stylesheet" href="styles.css?v=20261025-simulator-embed">
   <script src="script.js?v=20261025-descriptions" defer></script>
+  <script src="simulator-embed.js?v=20261025" defer></script>
   <link rel="stylesheet" href="crossing.css?v=20261025-spins">
   <script src="crossing-data.js?v=20261025-spins" defer></script>
   <script src="crossing.js?v=20261025-spins" defer></script>
@@ -97,6 +98,11 @@
         <div class="section-heading">
           <div><p class="eyebrow">Research</p><h2 id="research-title">Learning from a changing sky.</h2></div>
           <p>I build physical simulators and inference methods to connect time-domain observations to the systems that produce them.</p>
+        </div>
+
+        <div class="simulator-embed" id="interactive-microlensing">
+          <p class="simulator-open"><a class="text-link" href="microlensing/index.html">Open simulator on its own page <span aria-hidden="true">↗</span></a></p>
+          <iframe id="microlensing-frame" title="Interactive dynamical microlensing simulator" src="microlensing/index.html?embed=1&amp;v=20261025" loading="lazy" width="1160" height="1450"></iframe>
         </div>
 
         <article class="real-lens-feature" aria-labelledby="real-lens-title">
@@ -202,10 +208,6 @@
           <div><p class="eyebrow">The science in motion</p><h2 id="motion-title">A magnifying glass that moves.</h2></div>
           <p>These physical simulations show how evolving caustics change a quasar’s spectrum and reverberation response. Choose one of the two animations below, then select Play animation.</p>
         </div>
-        <aside class="simulator-callout" aria-labelledby="simulator-title">
-          <div><h3 id="simulator-title">Try microlensing yourself.</h3><p>Move the stars, change their masses and velocities, and explore how the disk and its six-band light curves respond. This interactive demonstration runs in your browser.</p></div>
-          <a class="button button-primary" href="microlensing/index.html">Open simulator <span aria-hidden="true">↗</span></a>
-        </aside>
         <div class="animation-tabs" role="group" aria-label="Choose a simulation" hidden>
           <button type="button" class="tab-button" aria-pressed="true" data-animation-tab="transfer">Time delays and transfer functions</button>
           <button type="button" class="tab-button" aria-pressed="false" data-animation-tab="spectrum">Spectra and multiband light curves</button>
