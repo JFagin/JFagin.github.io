@@ -31,7 +31,7 @@ button,select,input[type=number]{min-height:34px;padding:5px 8px}
 .caption{margin:8px 0;line-height:1.45}
 @media(min-width:521px) and (max-width:900px){.panels .panel-heading{min-height:70px;align-items:start}.panels .panel-title{max-width:210px}.panels .inline{gap:4px}}
 @media(max-width:760px){header>p{margin-top:6px}.panels .panel-heading{display:flex;flex-wrap:wrap;gap:4px 8px}.settings{gap:10px 12px}}
-html.embedded body{background:transparent;overflow:hidden}html.embedded main{max-width:none;padding:0}html.embedded nav[aria-label="Simulator navigation"],html.embedded header .eyebrow{display:none!important}html.embedded h1{font-size:28px}html.embedded header{margin-bottom:14px}</style></head>
+html.embedded body{background:transparent;overflow:hidden}html.embedded main{max-width:none;padding:0}html.embedded nav[aria-label="Simulator navigation"],html.embedded header .eyebrow{display:none!important}html.embedded h1{font-size:28px}html.embedded header{margin-bottom:14px}</style><link rel="stylesheet" href="layout.css?v=20261028-laptop-spacing"></head>
 <body><main>
 <nav aria-label="Simulator navigation" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-bottom:14px;font-size:13px"><a href="../#research" style="color:var(--teal)">← Back to research</a><a href="https://github.com/JFagin/microcaustics" style="color:var(--teal)">Microcaustics research package ↗</a></nav>
 <noscript><p>This interactive simulator requires JavaScript. You can still <a href="../#in-motion">view the research figures and animations</a>.</p></noscript>
@@ -474,6 +474,8 @@ class DiskLensGPU{
     for(let k=0;k<2;k++){this.frame(this.sources[k]);this.use('source');this.disk(source);this.uniform('resolution','uniform2f',this.size,this.size);this.uniform('sourceHalf','uniform1f',SOURCE_HALF);this.uniform('group','uniform1i',k);g.drawArrays(g.TRIANGLES,0,3);this.unlensed.push(...this.sum(this.sources[k].texture).map(v=>v*this.area));}
   }
   makeMap(stars,t,side=4096,shootHalf=SHOOT_HALF,macro=[AX,AY],method='irs'){
+    const mapKey=JSON.stringify([this.size,stars,t,side,shootHalf,macro,method]);
+    if(this.mapCacheTarget===this.count&&this.mapCacheKey===mapKey)return;
     const g=this.gl;g.disable(g.BLEND);
     if(method==='ipm'){
       this.prepareSampling(side,method);
@@ -486,6 +488,7 @@ class DiskLensGPU{
     }else{
       this.use('ray');this.stars(stars,t,macro);this.uniform('raySide','uniform1i',side);this.uniform('shootHalf','uniform1f',shootHalf);this.uniform('sourceHalf','uniform1f',SOURCE_HALF);g.drawArrays(g.POINTS,0,side*side);this.weight=(shootHalf/side*this.size/SOURCE_HALF)**2;
     }g.disable(g.BLEND);
+    this.mapCacheTarget=this.count;this.mapCacheKey=mapKey;
   }
   compute(stars,t,source,raySide=4096,shootHalf=SHOOT_HALF,macro=[AX,AY],method='irs'){
     if(!this.unlensed)this.setDisk(source);const g=this.gl;this.makeMap(stars,t,raySide,shootHalf,macro,method);const flux=[];

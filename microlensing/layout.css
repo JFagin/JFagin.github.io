@@ -1,0 +1,29 @@
+/* Display-only spacing. Map grids and simulation settings are unchanged. */
+main { padding-top: 8px; padding-bottom: 16px; }
+nav[aria-label="Simulator navigation"] { margin-bottom: 6px !important; }
+header, html.embedded header { margin-bottom: 6px; }
+.panels { gap: 14px; }
+.panels .panel-heading { margin-bottom: 3px; }
+.panels .view { width: 100%; }
+.panels .colorbar { padding: 4px 0 0; }
+.toolbar { margin: 6px 0 2px; }
+.view-toggles { margin: 2px 0 4px; }
+.curve { margin: 4px 0 8px; }
+.curve .panel-heading { margin-bottom: 1px; }
+.curve #curve { height: 150px; }
+.curve-footer .hint { margin-block: 2px; }
+.editor { padding-bottom: 8px; }
+.disk-controls { margin-top: 8px; }
+.settings { margin: 6px 0; gap: 8px 18px; }
+.settings input[type="range"] { margin-inline: 0; }
+.quality-row { margin: 8px 0; }
+@media (max-width: 760px) {
+  header > p { margin-top: 4px; }
+  .settings { gap: 8px 12px; }
+}
+@media (max-width: 520px) {
+  .curve #curve { height: 180px; }
+}
+@media (min-width: 521px) and (pointer: coarse) {
+  .toolbar button, .toolbar select { min-height: 40px; }
+}
