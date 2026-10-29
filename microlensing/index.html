@@ -32,11 +32,11 @@ button,select,input[type=number]{min-height:34px;padding:5px 8px}
 @media(min-width:521px) and (max-width:900px){.panels .panel-heading{min-height:70px;align-items:start}.panels .panel-title{max-width:210px}.panels .inline{gap:4px}}
 @media(max-width:760px){header>p{margin-top:6px}.panels .panel-heading{display:flex;flex-wrap:wrap;gap:4px 8px}.settings{gap:10px 12px}}
 html.embedded body{background:transparent;overflow:hidden}html.embedded main{max-width:none;padding:0}html.embedded nav[aria-label="Simulator navigation"],html.embedded header .eyebrow{display:none!important}html.embedded h1{font-size:28px}html.embedded header{margin-bottom:14px}
-</style><link rel="stylesheet" href="layout.css?v=20261028-history"></head>
+</style><link rel="stylesheet" href="layout.css?v=20261028-display"></head>
 <body><main>
 <nav aria-label="Simulator navigation" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-bottom:14px;font-size:13px"><a href="../#research" style="color:var(--teal)">← Back to research</a><a href="https://github.com/JFagin/microcaustics" style="color:var(--teal)">Microcaustics research package ↗</a></nav>
 <noscript><p>This interactive simulator requires JavaScript. You can still <a href="../#in-motion">view the research figures and animations</a>.</p></noscript>
-<header><div><p class="eyebrow">Interactive microlensing</p><h1>Moving stars, changing light.</h1></div><p>Move the stars. Change the disk. Explore microlensing in six Rubin bands. <a class="standalone-link" href="index.html" target="_blank" rel="noopener">Open simulator on its own page ↗</a> <button id="fullscreen" type="button" aria-pressed="false" hidden>Fullscreen</button> <label class="fit-control"><input id="fit-window" type="checkbox" checked>Fit window</label></p></header>
+<header><div><p class="eyebrow">Interactive microlensing</p><h1>Moving stars, changing light.</h1></div><p>Move the stars. Change the disk. Explore microlensing in six Rubin bands. <a class="standalone-link" href="index.html" target="_blank" rel="noopener">Open simulator on its own page ↗</a> <button id="fullscreen" type="button" aria-pressed="false" hidden>Fullscreen</button></p></header>
 <p id="error" role="alert" hidden></p>
 <div class="panels">
  <section><div class="panel-heading"><div class="panel-title"><h2>Lens plane</h2><span>Microlenses, critical curves, and lensed disk</span></div><label class="inline">Disk band <select id="band" aria-label="Displayed disk band"><option value="0">u</option><option value="1">g</option><option value="2" selected>r</option><option value="3">i</option><option value="4">z</option><option value="5">y</option></select></label></div>
@@ -51,13 +51,6 @@ html.embedded body{background:transparent;overflow:hidden}html.embedded main{max
 <div class="toolbar"><button id="play" disabled>Play</button><button id="reset">Reset time</button><button id="add" title="Draw a Salpeter mass with mean 0.3 solar masses and maximum-to-minimum ratio 100">Add star</button><button id="remove">Remove selected</button><button id="reset-stars" title="Restore the original three stars without changing the disk">Reset stars</button><span id="clock"></span><output id="performance">Starting GPU…</output></div>
 <div class="view-toggles"><label><input id="critical" type="checkbox" checked>Show critical curves</label><label><input id="caustics" type="checkbox" checked>Show caustics</label><label><input id="crossings" type="checkbox" checked>Mark caustic crossings</label><span class="hint">Drag stars or the disk to move them. When zoomed, drag empty space to pan, or Shift-drag anywhere.</span></div>
 <section class="curve"><div class="panel-heading"><h2>Microlensing light curves</h2><div class="band-legend" id="band-legend"></div><label class="inline">Display<select id="flux-mode" aria-label="Light curve units"><option value="mag">AB magnitude</option><option value="flux">Flux density [mJy]</option></select></label></div><canvas id="curve" aria-label="Six-band light curves with detected caustic crossings" width="1100" height="240"></canvas><div class="curve-footer"><output id="magnification"></output><span class="hint" id="crossing-count"></span></div></section>
-<div class="history-controls" aria-label="Light curve history">
- <button id="history-earlier" type="button" aria-label="Earlier light curve">←</button>
- <label for="history-position">History</label><input id="history-position" type="range" min="0" max="0" value="0" step="1" aria-label="Browse light curve history" disabled>
- <button id="history-later" type="button" aria-label="Later light curve">→</button>
- <button id="history-follow" type="button" aria-pressed="true" disabled>Follow latest</button>
- <output id="history-range">Following latest</output>
-</div><p id="history-retention" class="hint" hidden></p>
 <section class="editor" aria-label="Selected star settings">
  <label>Selected star<select id="selection"></select></label>
  <label><span>Mass / <var>M</var><sub>⊙</sub></span><input id="mass" aria-label="Star mass" type="number" min="0.05" step="0.05" value="1"></label>
@@ -77,7 +70,7 @@ html.embedded body{background:transparent;overflow:hidden}html.embedded main{max
  <label><span>Source <var>y</var> / <var>θ</var><sub>E</sub></span><input aria-label="Source y" id="source-y" type="number" min="-1.2" max="1.2" step="0.05" value="0"></label>
 </div><div id="disk-info" class="hint"></div></section>
 <p id="resolution-warning" class="warning" role="status" hidden></p>
-<div class="quality-row"><label class="inline">Map method<select id="method"><option value="ipm" selected>IPM · mapped areas</option><option value="irs">Inverse ray shooting</option></select></label><label class="inline">Lens sampling<select id="quality"></select></label><label class="inline">Source map<select id="map-resolution" aria-label="Source magnification map resolution"><option value="512">512² pixels</option><option value="1024" selected>1024² pixels</option><option value="2048">2048² pixels</option><option value="4096">4096² pixels</option></select></label><label class="inline">Critical curves<select id="curve-resolution" aria-label="Critical curves and caustics resolution"><option value="256">256² · Fast</option><option value="512" selected>512² · Standard</option><option value="1024">1024² · Fine</option><option value="2048">2048² · Ultra</option></select></label><span class="hint">Finer grids take longer and larger maps use more GPU memory. Edits keep the current time. Browse up to 100,000 recorded samples, with 400 shown at a time and breaks at edits. History browsing does not rewind the maps. Numerical grid settings restart the timeline.</span></div>
+<div class="quality-row"><label class="inline">Map method<select id="method"><option value="ipm" selected>IPM · mapped areas</option><option value="irs">Inverse ray shooting</option></select></label><label class="inline">Lens sampling<select id="quality"></select></label><label class="inline">Source map<select id="map-resolution" aria-label="Source magnification map resolution"><option value="512">512² pixels</option><option value="1024" selected>1024² pixels</option><option value="2048">2048² pixels</option><option value="4096">4096² pixels</option></select></label><label class="inline">Critical curves<select id="curve-resolution" aria-label="Critical curves and caustics resolution"><option value="256">256² · Fast</option><option value="512" selected>512² · Standard</option><option value="1024">1024² · Fine</option><option value="2048">2048² · Ultra</option></select></label><span class="hint">Finer grids take longer and larger maps use more GPU memory. Edits keep the current time. The light curve starts at zero, with breaks at edits. Long runs retain a reduced drawing summary. Numerical grid settings restart the timeline.</span></div>
 <p class="caption">This browser demonstration illustrates microlensing with a few editable stars. It is not the full <a href="https://arxiv.org/abs/2610.19703">Microcaustics research simulator</a>. Calculations run on your device and require a compatible GPU-enabled browser.</p>
 <p class="caption">The disk uses a Novikov–Thorne temperature profile, with adjustable temperature slope and approximate gravitational and Doppler shifts. At fixed Eddington ratio, spin changes the accretion rate and emitting size. Black-hole light bending and intrinsic variability are omitted. Colored contours enclose half the light in each band. The black ellipse marks the projected ISCO. Dashed markers indicate detected disk-center caustic crossings, not every brightening event.</p>
 <p class="caption">Example scale for a 1 <var>M</var><sub>⊙</sub> lens: source-plane <var>R</var><sub>E</sub> = 5 × 10<sup>16</sup> cm, <var>z</var><sub>s</sub> = 1.695 and <var>D</var><sub>A</sub> = 1.75 Gpc. Time is measured in <var>t</var><sub>E</sub> = <var>θ</var><sub>E</sub>(1 <var>M</var><sub>⊙</sub>) / <var>ω</var><sub>ref</sub>, for a fixed reference angular speed. Smooth convergence is 0.20 and shear is 0.25.</p>
@@ -88,35 +81,43 @@ html.embedded body{background:transparent;overflow:hidden}html.embedded main{max
 function position(s,t){const dt=t-(s.epoch??0);return{x:s.x+s.vx*dt,y:s.y+s.vy*dt};}
 function rebaseStar(s,t){const p=position(s,t);s.x=p.x;s.y=p.y;s.epoch=t;return s;}
 
-// A bounded ring keeps scalar history, never old maps or GPU resources.
-class TimelineBuffer{
- constructor(capacity){this.capacity=capacity;this.items=[];this.head=0;this.length=0;}
- at(i){return this.items[(this.head+i)%this.capacity];}
- push(value,replace=false){
-  if(replace&&this.length&&this.at(this.length-1).t===value.t){this.items[(this.head+this.length-1)%this.capacity]=value;return;}
-  this.items[(this.head+this.length)%this.capacity]=value;
-  if(this.length<this.capacity)this.length++;else this.head=(this.head+1)%this.capacity;
+// Retain the time span and each band's extrema without retaining old maps.
+// Reduction affects drawing only. Segment IDs prevent lines across edits.
+function reduceDrawing(points){
+ const out=[];
+ for(let start=0;start<points.length;start+=32){
+  const end=Math.min(start+32,points.length),keep=new Set([start,end-1]);
+  for(let k=0;k<6;k++){
+   let lo=start,hi=start;
+   for(let j=start+1;j<end;j++){
+    if(points[j].flux[k]<points[lo].flux[k])lo=j;
+    if(points[j].flux[k]>points[hi].flux[k])hi=j;
+   }
+   keep.add(lo);keep.add(hi);
+  }
+  for(const j of [...keep].sort((a,b)=>a-b))out.push(points[j]);
  }
- bound(t,upper=false){let lo=0,hi=this.length;while(lo<hi){const mid=(lo+hi)>>1,v=this.at(mid),time=typeof v==='number'?v:v.t;if(time<t||(upper&&time===t))lo=mid+1;else hi=mid;}return lo;}
- slice(start,end){const out=[];for(let i=start;i<end;i++)out.push(this.at(i));return out;}
- between(lo,hi){return this.slice(this.bound(lo),this.bound(hi,true));}
+ return out;
+}
+function addMarker(markers,t){
+ if(markers.at(-1)!==t)markers.push(t);
+ if(markers.length>1024)markers.splice(0,markers.length,...markers.filter((_,i)=>i%2===0||i===markers.length-1));
 }
 class LiveHistory{
- constructor(limit=400,capacity=100000){if(!Number.isInteger(limit)||limit<2||!Number.isInteger(capacity)||capacity<limit)throw Error('Invalid history limit');this.limit=limit;this.capacity=capacity;this.reset();}
- reset(){this.points=[];this.events=[];this.edits=[];this.segment=0;this.totalCrossings=0;this.archive=new TimelineBuffer(this.capacity);this.crossingArchive=new TimelineBuffer(this.capacity);this.editArchive=new TimelineBuffer(this.capacity);}
- edit(t){this.segment++;if(this.edits.at(-1)!==t){this.edits.push(t);this.editArchive.push(t);}this.trim();}
- crossing(t){this.totalCrossings++;this.events.push(t);this.crossingArchive.push(t);}
+ constructor(limit=400,capacity=4096){if(!Number.isInteger(limit)||limit<2||!Number.isInteger(capacity)||capacity<Math.max(limit,64))throw Error('Invalid history limit');this.limit=limit;this.capacity=capacity;this.reset();}
+ reset(){this.points=[];this.events=[];this.edits=[];this.segment=0;this.totalCrossings=0;this.drawing=[];this.crossingMarkers=[];this.editMarkers=[];}
+ edit(t){this.segment++;if(this.edits.at(-1)!==t)this.edits.push(t);addMarker(this.editMarkers,t);this.trim();}
+ crossing(t){this.totalCrossings++;this.events.push(t);addMarker(this.crossingMarkers,t);}
  append(t,flux){
   const p={t,flux,segment:this.segment},last=this.points.at(-1);
   if(last?.t===t)this.points[this.points.length-1]=p;
   else this.points.push(p);
-  this.archive.push(p,true);this.trim();return p;
+  if(this.drawing.at(-1)?.t===t)this.drawing[this.drawing.length-1]=p;else this.drawing.push(p);
+  if(this.drawing.length>this.capacity)this.drawing=reduceDrawing(this.drawing);
+  this.trim();return p;
  }
- view(endTime=null){
-  const n=this.archive.length,minEnd=Math.min(this.limit-1,n-1);
-  const end=endTime===null?n-1:Math.max(minEnd,Math.min(n-1,this.archive.bound(endTime,true)-1));
-  const points=this.archive.slice(Math.max(0,end-this.limit+1),end+1),start=points[0]?.t??0,last=points.at(-1)?.t??0;
-  return{points,events:this.crossingArchive.between(start,last),edits:this.editArchive.between(start,last),start,last,end,minEnd,maxEnd:n-1,oldest:this.archive.at(0)?.t??0};
+ view(){
+  return{points:this.drawing,events:this.crossingMarkers,edits:this.editMarkers,start:0,last:this.drawing.at(-1)?.t??0};
  }
  trim(){
   if(this.points.length>this.limit)this.points.splice(0,this.points.length-this.limit);
@@ -957,7 +958,7 @@ function updateDisk(){const key=JSON.stringify([source.logMass,source.spin,sourc
 }
 const toMag=f=>16.4-2.5*Math.log10(f);
 function drawCurve(){
- const view=lightCurveWindow(),history=view.points,events=view.events;updateHistoryControls(view);
+ const view=lightCurveWindow(),history=view.points,events=view.events;
  const canvas=$('curve'),rect=canvas.getBoundingClientRect(),ratio=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(rect.height*ratio);const c=canvas.getContext('2d');c.scale(ratio,ratio);
  const w=rect.width,h=rect.height,l=58,r=w-14,top=12,bottom=h-38,mag=$('flux-mode').value==='mag',value=f=>mag?toMag(f):f,values=history.flatMap(p=>p.flux.map(value));
  let lo=values.length?Math.min(...values):0,hi=values.length?Math.max(...values):1;const pad=Math.max((hi-lo)*.12,mag?.04:.01);lo-=pad;hi+=pad;const tmin=view.start,tmax=Math.max(tmin+2,view.last),X=t=>l+(r-l)*(t-tmin)/(tmax-tmin),Y=v=>mag?top+(bottom-top)*(v-lo)/(hi-lo):bottom-(bottom-top)*(v-lo)/(hi-lo);
@@ -968,7 +969,7 @@ function drawCurve(){
  for(let k=0;k<6;k++){c.strokeStyle=BAND_COLORS[k];c.lineWidth=1.9;c.beginPath();history.forEach((p,i)=>{const x=X(p.t),y=Y(value(p.flux[k]));i&&p.segment===history[i-1].segment?c.lineTo(x,y):c.moveTo(x,y);});c.stroke();if(history.length){const p=history.at(-1);c.fillStyle=BAND_COLORS[k];c.beginPath();c.arc(X(p.t),Y(value(p.flux[k])),2.5,0,2*Math.PI);c.fill();}}
  c.strokeStyle='#98a29e';c.beginPath();c.moveTo(l,top);c.lineTo(l,bottom);c.lineTo(r,bottom);c.stroke();c.fillStyle='#5d666c';c.textAlign='center';for(let i=0;i<5;i++)c.fillText((tmin+(tmax-tmin)*i/4).toFixed(1),X(tmin+(tmax-tmin)*i/4),bottom+18);
  c.font='14px Georgia';c.fillText('Time / t',(l+r)/2,h-5);const tw=c.measureText('Time / t').width;c.font='10px Georgia';c.fillText('E',(l+r)/2+tw/2+3,h-2);c.save();c.translate(14,(top+bottom)/2);c.rotate(-Math.PI/2);c.font='12px system-ui';c.fillText(mag?'Brightness [mag]':'Brightness [mJy]',0,0);c.restore();
- $('crossing-count').textContent=`${liveHistory.totalCrossings} detected crossings · ${events.length} in view`;
+ $('crossing-count').textContent=`${liveHistory.totalCrossings} detected crossings`;
 }
 function drawViews(){
  if(!gpu||!summary)return;
@@ -1101,7 +1102,7 @@ const workerNote=document.createElement('p');workerNote.id='worker-note';workerN
 retry.onclick=()=>{for(const [el,disabled] of disabledBeforeFailure)el.disabled=disabled;disabledBeforeFailure.clear();$('map-resolution').value='512';$('method').value='ipm';$('curve-resolution').value='256';retry.dataset.low='true';restart();initialize();};
 // Defer allocation until the simulator enters the viewport. Do not auto-resume
 // playback when it returns to view, including when embedded in a page or iframe.
-if('IntersectionObserver' in window){new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible)stop();}).observe(main);}else visible=true;
+if('IntersectionObserver' in window){new IntersectionObserver(entries=>{visible=entries[0].isIntersecting||!!document.fullscreenElement;if(!visible)stop();}).observe(main);}else visible=true;
 // Included inside the local page's module, after its model/UI definitions.
 
 const trackPlayback=false;
@@ -1275,7 +1276,7 @@ function atomicLiveEdit(update){
 }
 function resetLiveTime(){
  stop();liveEdit=null;stars.forEach(s=>{s.epoch=0;});revision++;time=0;
- liveHistory.reset();historyEnd=null;history=liveHistory.points;events=liveHistory.events;
+ liveHistory.reset();history=liveHistory.points;events=liveHistory.events;
  previousClass=null;lastTraceTime=0;curveKey='';dirty=true;fillSelection();
 }
 $('reset').onclick=resetLiveTime;
@@ -1350,68 +1351,47 @@ for(const event of ['pointerup','pointercancel'])window.addEventListener(event,f
 for(const canvas of [overlay,srcOverlay])canvas.addEventListener('lostpointercapture',finishLiveEdit);
 
 
-// Presentation only. Browsing never changes the simulation clock or GPU grids.
-let historyEnd=null;
-function lightCurveWindow(){return liveHistory.view(historyEnd);}
-function updateHistoryControls(view){
- const slider=$('history-position'),follow=historyEnd===null;
- slider.min=Math.max(0,view.minEnd);slider.max=Math.max(0,view.maxEnd);slider.value=Math.max(0,view.end);
- slider.disabled=view.maxEnd<=view.minEnd;
- $('history-earlier').disabled=slider.disabled||view.end<=view.minEnd;
- $('history-later').disabled=follow||view.end>=view.maxEnd;
- $('history-follow').disabled=follow;$('history-follow').setAttribute('aria-pressed',String(follow));
- const text=`${follow?'Following latest':'Viewing history'} · ${view.start.toFixed(2)}–${view.last.toFixed(2)} t_E`;
- $('history-range').textContent=text;slider.setAttribute('aria-valuetext',text);
- $('history-retention').textContent=view.oldest>0?`Earlier samples before ${view.oldest.toFixed(2)} t_E have left the 100,000-sample history.`:'';
- $('history-retention').hidden=view.oldest===0;
-}
-function browseHistory(index){
- const n=liveHistory.archive.length;if(!n)return;
- historyEnd=liveHistory.archive.at(Math.max(0,Math.min(n-1,index))).t;drawCurve();
-}
-$('history-position').oninput=e=>browseHistory(Number(e.target.value));
-$('history-earlier').onclick=()=>browseHistory(lightCurveWindow().end-200);
-$('history-later').onclick=()=>browseHistory(lightCurveWindow().end+200);
-$('history-follow').onclick=()=>{historyEnd=null;drawCurve();};
-
-// Embedded documents cannot use their own height as the viewport height.
-// The parent supplies the browser viewport separately from iframe content size.
-let hostViewport=null,fitPending=false;
+// Display only. Fullscreen fitting never changes the numerical grids.
+function lightCurveWindow(){return liveHistory.view();}
+let fitPending=false;
 function fitSimulator(){
  if(fitPending)return;fitPending=true;
  requestAnimationFrame(()=>{
-  fitPending=false;const panels=document.querySelector('.panels'),map=panels.querySelector('.view');
-  if(innerWidth<=520||!$('fit-window').checked){panels.style.removeProperty('max-width');document.documentElement.classList.remove('short-viewport');drawCurve();return;}
-  const embedded=document.documentElement.classList.contains('embedded');
-  const budget=embedded?(hostViewport?.height??900)-(hostViewport?.inset??42)-12:innerHeight-12;
-  document.documentElement.classList.toggle('short-viewport',budget<850);
-  const natural=(main.clientWidth-parseFloat(getComputedStyle(main).paddingLeft)-parseFloat(getComputedStyle(main).paddingRight)-14)/2;
-  let side=natural;
-  for(let i=0;i<3;i++){
+  fitPending=false;
+  const panels=document.querySelector('.panels'),full=!!document.fullscreenElement;
+  document.documentElement.classList.toggle('simulator-fullscreen',full);
+  panels.style.removeProperty('max-width');
+  const headings=[...panels.querySelectorAll('.panel-heading')];
+  const alignHeadings=()=>{
+   for(const h of headings)h.style.removeProperty('min-height');
+   const height=Math.max(...headings.map(h=>h.getBoundingClientRect().height));
+   for(const h of headings)h.style.minHeight=`${height}px`;
+  };
+  alignHeadings();
+  if(full&&innerWidth>520){
+   const map=panels.querySelector('.view'),natural=map.getBoundingClientRect().width;
+   const chrome=document.querySelector('.curve').getBoundingClientRect().bottom-main.getBoundingClientRect().top-natural;
+   let side=Math.min(natural,Math.max(260,innerHeight-chrome-16));
    panels.style.maxWidth=`${2*side+14}px`;
-   const chrome=document.querySelector('.history-controls').getBoundingClientRect().bottom-main.getBoundingClientRect().top-map.getBoundingClientRect().height;
-   const next=Math.min(natural,Math.max(budget<740?240:280,budget-chrome));
-   if(Math.abs(next-side)<1)break;side=next;
+   alignHeadings();
+   const extra=document.querySelector('.curve').getBoundingClientRect().bottom-innerHeight+16;
+   if(extra>0){side=Math.max(260,side-extra);panels.style.maxWidth=`${2*side+14}px`;alignHeadings();}
   }
-  panels.style.maxWidth=`${2*side+14}px`;drawCurve();
+  drawCurve();
  });
 }
 window.addEventListener('resize',fitSimulator);
-$('fit-window').onchange=fitSimulator;
-const fitObserver=new ResizeObserver(fitSimulator);
-for(const element of document.querySelectorAll('header,.colorbar,.toolbar,.view-toggles,.curve,.history-controls'))fitObserver.observe(element);
-window.addEventListener('message',event=>{
- if(event.origin!==location.origin||event.source!==parent||event.data?.type!=='microlensing-viewport')return;
- const{height,inset}=event.data;if(!Number.isFinite(height)||height<200||height>10000||!Number.isFinite(inset)||inset<0||inset>200)return;
- hostViewport={height,inset};fitSimulator();
-});
 const fullButton=$('fullscreen'),fullElement=document.documentElement;
-fullButton.hidden=fullElement.classList.contains('embedded')||!document.fullscreenEnabled||!fullElement.requestFullscreen;
+fullButton.hidden=!document.fullscreenEnabled||!fullElement.requestFullscreen;
 fullButton.onclick=async()=>{
  try{if(document.fullscreenElement)await document.exitFullscreen();else await fullElement.requestFullscreen();}
  catch{fullButton.textContent='Fullscreen unavailable';}
 };
-document.addEventListener('fullscreenchange',()=>{fullButton.textContent=document.fullscreenElement?'Exit fullscreen':'Fullscreen';fullButton.setAttribute('aria-pressed',String(!!document.fullscreenElement));fitSimulator();});
+document.addEventListener('fullscreenchange',()=>{
+ const full=!!document.fullscreenElement,rect=main.getBoundingClientRect();
+ visible=full||(rect.bottom>0&&rect.top<innerHeight);
+ fullButton.textContent=full?'Exit fullscreen':'Fullscreen';fullButton.setAttribute('aria-pressed',String(full));fitSimulator();
+});
 fitSimulator();
 
 $('performance').textContent='Waiting for simulator to enter view…';
@@ -1419,9 +1399,9 @@ requestAnimationFrame(tick);
 
 if(new URLSearchParams(location.search).get('embed')==='1'&&window.parent!==window){
  let resizePending=false;
- const reportHeight=()=>{if(resizePending)return;resizePending=true;requestAnimationFrame(()=>{resizePending=false;window.parent.postMessage({type:'microlensing-height',height:Math.ceil(main.getBoundingClientRect().height)},location.origin);});};
- new ResizeObserver(reportHeight).observe(main);reportHeight();
- window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==window.parent)return;if(event.data?.type==='microlensing-visibility'&&!event.data.visible)stop();});
+ const reportHeight=()=>{if(document.fullscreenElement||resizePending)return;resizePending=true;requestAnimationFrame(()=>{resizePending=false;window.parent.postMessage({type:'microlensing-height',height:Math.ceil(main.getBoundingClientRect().height)},location.origin);});};
+ new ResizeObserver(reportHeight).observe(main);document.addEventListener('fullscreenchange',reportHeight);reportHeight();
+ window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==window.parent)return;if(event.data?.type==='microlensing-visibility'&&!event.data.visible&&!document.fullscreenElement)stop();});
 }
 
 

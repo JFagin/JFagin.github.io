@@ -12,21 +12,21 @@ html.embedded .standalone-link { display: inline; }
 html.embedded header { display: block; }
 html.embedded header > p { max-width: none; margin-top: 4px; }
 #fullscreen { margin-left: 8px; }
-.fit-control { display: inline-flex; flex-direction: row; align-items: center; gap: 4px; margin-left: 8px; white-space: nowrap; }
 html:fullscreen { overflow: auto; background: var(--paper); }
+html.embedded:fullscreen body { overflow: auto; }
+html.simulator-fullscreen main { max-width: none; }
+html.simulator-fullscreen nav, html.simulator-fullscreen .eyebrow, html.simulator-fullscreen header h1 { display: none; }
+html.simulator-fullscreen header { display: block; }
+html.simulator-fullscreen header > p { max-width: none; }
 .panels { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-inline: auto; }
 .panels > section { min-width: 0; }
-.panels .panel-heading { min-height: 72px; height: 72px; flex-wrap: nowrap; align-content: center; }
-.panels .panel-title { flex: 1; }
+.panels .panel-heading { display: flex; min-height: 34px; height: auto; flex-wrap: nowrap; align-items: center; gap: 8px; }
+.panels .panel-title { display: flex; align-items: center; flex-wrap: wrap; gap: 0 8px; flex: 1; max-width: none; }
+.panels .panel-title h2 { flex-shrink: 0; }
+.panels .panel-title span { display: inline; }
 .panels .inline { gap: 4px; }
-.history-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 2px 0 8px; }
-.history-controls input { flex: 1; min-width: 80px; width: auto; }
-.history-controls label { display: inline; }
-.history-controls output { color: var(--muted); font-variant-numeric: tabular-nums; }
-.history-controls button { white-space: nowrap; }
 @media (max-width: 520px) {
   .panels { grid-template-columns: 1fr; }
-  .history-controls output { width: 100%; }
 }
 @media (min-width: 521px) and (max-height: 850px) {
   .curve #curve { height: 130px; }
@@ -58,5 +58,5 @@ html:fullscreen { overflow: auto; background: var(--paper); }
   .toolbar button, .toolbar select { min-height: 40px; }
 }
 @media (min-width: 521px) {
-  html.short-viewport .curve #curve { height: 130px; }
+  html.simulator-fullscreen .curve #curve { height: 130px; }
 }

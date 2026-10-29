@@ -193,13 +193,14 @@ h1 { font-size: clamp(56px, 6.3vw, 83px); line-height: 1.12; letter-spacing: -3.
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-block: 14px; color: var(--muted); font-size: 11px; }
 .site-footer a { text-decoration: none; }
 .site-footer p + p { margin-top: 0; }
-.figure-dialog { width: min(1300px, 96vw); max-height: 94vh; border: 1px solid var(--line); border-radius: 5px; padding: 24px; color: var(--ink); background: white; }
+.figure-dialog { width: min(1500px, 96vw); height: 94vh; height: 94dvh; max-height: 94dvh; max-width: 96vw; border: 1px solid var(--line); border-radius: 5px; padding: 16px; color: var(--ink); background: white; overflow: hidden; }
+.figure-dialog[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 10px; }
 .figure-dialog::backdrop { background: rgba(17, 30, 35, .78); }
-.dialog-header { display: flex; gap: 30px; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.dialog-header { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 0; }
 .dialog-header h2 { font: 500 20px/1.4 var(--sans); letter-spacing: -.3px; }
 .dialog-close { flex-shrink: 0; background: var(--paper); border: 1px solid var(--line); padding: 8px 13px; border-radius: 3px; color: var(--ink); font-size: 13px; }
-.figure-dialog img { width: 100%; }
-.figure-dialog > p { font-size: 13px; margin-top: 20px; color: var(--muted); }
+.figure-dialog img { display: block; width: 100%; height: 100%; min-height: 0; min-width: 0; object-fit: contain; }
+.figure-dialog > p { font-size: 13px; margin: 0; color: var(--muted); }
 body.dialog-open { overflow: hidden; }
 @media (min-width: 1700px) { .hero { padding-top: 34px; padding-bottom: 30px; } }
 @media (max-width: 1050px) {
