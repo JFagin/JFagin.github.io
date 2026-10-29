@@ -32,7 +32,7 @@ button,select,input[type=number]{min-height:34px;padding:5px 8px}
 @media(min-width:521px) and (max-width:900px){.panels .panel-heading{min-height:70px;align-items:start}.panels .panel-title{max-width:210px}.panels .inline{gap:4px}}
 @media(max-width:760px){header>p{margin-top:6px}.panels .panel-heading{display:flex;flex-wrap:wrap;gap:4px 8px}.settings{gap:10px 12px}}
 html.embedded body{background:transparent;overflow:hidden}html.embedded main{max-width:none;padding:0}html.embedded nav[aria-label="Simulator navigation"],html.embedded header .eyebrow{display:none!important}html.embedded h1{font-size:28px}html.embedded header{margin-bottom:14px}
-</style><link rel="stylesheet" href="layout.css?v=20261028-display"></head>
+</style><link rel="stylesheet" href="layout.css?v=20261028-sharp"></head>
 <body><main>
 <nav aria-label="Simulator navigation" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-bottom:14px;font-size:13px"><a href="../#research" style="color:var(--teal)">← Back to research</a><a href="https://github.com/JFagin/microcaustics" style="color:var(--teal)">Microcaustics research package ↗</a></nav>
 <noscript><p>This interactive simulator requires JavaScript. You can still <a href="../#in-motion">view the research figures and animations</a>.</p></noscript>
@@ -929,7 +929,7 @@ retry.textContent='Retry with lower resolutions';retry.hidden=true;$('error').af
 let disabledBeforeFailure=new Map(),workingSampling={method:'ipm',side:1024};
 const stateKey=()=>JSON.stringify([revision,stars,source,time,$('curve-resolution').value,$('quality').value,$('method').value,$('map-resolution').value]);
 const lensHalf=()=>LENS_HALF/lensZoom,sourceHalf=()=>SOURCE_HALF/sourceZoom;
-const pos=(p,half,canvas=overlay)=>viewPixel(p,half,canvas.width,canvas.height,canvas===srcOverlay?sourceViewCenter:lensViewCenter);
+const pos=(p,half,canvas=overlay)=>viewPixel(p,half,DISPLAY_GRID,DISPLAY_GRID,canvas===srcOverlay?sourceViewCenter:lensViewCenter);
 function stop(){playing=false;$('play').textContent='Play';if(liveEdit)liveEdit.resume=false;invalidatePlayback();}
 function restart(){resetLiveTime();}
 function fillSelection(){
@@ -938,18 +938,18 @@ function fillSelection(){
  const s=stars[selected],p=s&&position(s,time);for(const key of ['mass','x','y','vx','vy']){$(key).disabled=!s;$(key).value=s?Number((key==='x'||key==='y'?p[key]:s[key==='mass'?'m':key]).toFixed(3)):'';}
 }
 function world(e,c,half){const r=c.getBoundingClientRect();return viewWorld((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height,half,c===srcOverlay?sourceViewCenter:lensViewCenter);}
-function scaleBar(c,half){const x=23,y=c.canvas.height-28,length=scaleLength(half),label=`${Number(length.toPrecision(3))} θ`,len=length*c.canvas.width/(2*half);c.save();c.strokeStyle='#fff';c.lineWidth=3;c.beginPath();c.moveTo(x,y);c.lineTo(x+len,y);c.stroke();c.fillStyle='#fff';c.textAlign='left';c.font='18px Georgia';const width=c.measureText(label).width;c.font='12px Georgia';const subWidth=c.measureText('E').width,left=x+(len-width-subWidth)/2;c.font='18px Georgia';c.fillText(label,left,y-10);c.font='12px Georgia';c.fillText('E',left+width,y-7);c.restore();}
+function scaleBar(c,half){const x=23,y=DISPLAY_GRID-28,length=scaleLength(half),label=`${Number(length.toPrecision(3))} θ`,len=length*DISPLAY_GRID/(2*half);c.save();c.strokeStyle='#fff';c.lineWidth=3;c.beginPath();c.moveTo(x,y);c.lineTo(x+len,y);c.stroke();c.fillStyle='#fff';c.textAlign='left';c.font='18px Georgia';const width=c.measureText(label).width;c.font='12px Georgia';const subWidth=c.measureText('E').width,left=x+(len-width-subWidth)/2;c.font='18px Georgia';c.fillText(label,left,y-10);c.font='12px Georgia';c.fillText('E',left+width,y-7);c.restore();}
 function arrow(c,a,b){c.beginPath();c.moveTo(...a);c.lineTo(...b);c.stroke();const ang=Math.atan2(b[1]-a[1],b[0]-a[0]);c.beginPath();c.moveTo(...b);c.lineTo(b[0]-10*Math.cos(ang-.4),b[1]-10*Math.sin(ang-.4));c.lineTo(b[0]-10*Math.cos(ang+.4),b[1]-10*Math.sin(ang+.4));c.closePath();c.fill();}
 function segments(c,list,half,color,width){c.strokeStyle=color;c.lineWidth=width;c.beginPath();for(const [a,b] of list){c.moveTo(...pos(a,half,c.canvas));c.lineTo(...pos(b,half,c.canvas));}c.stroke();}
 function overlays(){
- if(!summary||!curves)return;const c=overlay.getContext('2d');c.clearRect(0,0,overlay.width,overlay.height);
+ if(!summary||!curves)return;const c=clearOverlay(overlay);
  if($('critical').checked)segments(c,curves.critical,lensHalf(),'#8fded9',1.15);scaleBar(c,lensHalf());
  stars.forEach((s,i)=>{const p=position(s,time),a=pos([p.x,p.y],lensHalf()),b=pos([p.x+3*s.vx,p.y+3*s.vy],lensHalf());c.fillStyle=c.strokeStyle=i===selected?'#83ead3':'#ccd5db';c.lineWidth=2;arrow(c,a,b);c.beginPath();c.arc(...a,5+3*Math.sqrt(s.m),0,2*Math.PI);c.fillStyle=i===selected?'#83ead3':'#fff2bf';c.fill();c.strokeStyle='#111';c.stroke();c.fillStyle='#fff';c.font='17px system-ui';c.fillText(String(i+1),a[0]+13,a[1]-11);if(i===selected){c.beginPath();c.arc(...b,5,0,2*Math.PI);c.fillStyle='#83ead3';c.fill();}});
- const d=srcOverlay.getContext('2d');d.clearRect(0,0,srcOverlay.width,srcOverlay.height);
+ const d=clearOverlay(srcOverlay);
  if($('caustics').checked)segments(d,curves.caustic,sourceHalf(),'#fff5dc',1.4);
  const a=pos([source.x,source.y],sourceHalf(),srcOverlay),p=summary.p;
- for(let b=5;b>=0;b--){const r=summary.half[b]*srcOverlay.width/(2*sourceHalf());d.beginPath();d.ellipse(...a,r,r*p.q,-p.angle,0,2*Math.PI);d.strokeStyle='#111';d.lineWidth=4;d.stroke();d.strokeStyle=BAND_COLORS[b];d.lineWidth=2.5;d.stroke();}
- const risco=p.rin*p.rgTheta*srcOverlay.width/(2*sourceHalf());
+ for(let b=5;b>=0;b--){const r=summary.half[b]*DISPLAY_GRID/(2*sourceHalf());d.beginPath();d.ellipse(...a,r,r*p.q,-p.angle,0,2*Math.PI);d.strokeStyle='#111';d.lineWidth=4;d.stroke();d.strokeStyle=BAND_COLORS[b];d.lineWidth=2.5;d.stroke();}
+ const risco=p.rin*p.rgTheta*DISPLAY_GRID/(2*sourceHalf());
  d.beginPath();d.ellipse(...a,risco,risco*p.q,-p.angle,0,2*Math.PI);d.fillStyle='black';d.fill();scaleBar(d,sourceHalf());
  d.fillStyle='rgba(5,8,16,.85)';d.fillRect(15,9,181,31);d.font='17px system-ui';BAND_NAMES.forEach((b,i)=>{d.fillStyle=BAND_COLORS[i];d.fillText(b,24+i*28,30);});
 }
@@ -973,6 +973,7 @@ function drawCurve(){
 }
 function drawViews(){
  if(!gpu||!summary)return;
+ resizeMapDisplays();
  const band=Number($('band').value),high=Math.ceil(Math.log10(summary.peak[band])),range=[high-4,high];
  gpu.draw(lens,'lens',stars,time,source,lensHalf(),band,range,lensViewCenter);
  gpu.draw(src,'map',stars,time,source,sourceHalf(),band,range,sourceViewCenter);
@@ -1351,6 +1352,29 @@ for(const event of ['pointerup','pointercancel'])window.addEventListener(event,f
 for(const canvas of [overlay,srcOverlay])canvas.addEventListener('lostpointercapture',finishLiveEdit);
 
 
+// Drawing coordinates stay unchanged. Only the display's pixel count changes.
+const DISPLAY_GRID=800;
+function displayCanvasSize(cssWidth,density,maximum=4096){
+ const ratio=Number.isFinite(density)&&density>0?density:1;
+ return Math.max(1,Math.min(maximum,Math.ceil(cssWidth*ratio)));
+}
+function resizeMapDisplays(){
+ const maximum=Math.min(4096,gpu?.maxTargetSize??4096);
+ for(const [image,annotation] of [[lens,overlay],[src,srcOverlay]]){
+  const size=displayCanvasSize(image.getBoundingClientRect().width,devicePixelRatio,maximum);
+  for(const canvas of [image,annotation]){
+   if(canvas.width!==size)canvas.width=size;
+   if(canvas.height!==size)canvas.height=size;
+  }
+ }
+}
+function clearOverlay(canvas){
+ const c=canvas.getContext('2d');
+ c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,canvas.width,canvas.height);
+ c.setTransform(canvas.width/DISPLAY_GRID,0,0,canvas.height/DISPLAY_GRID,0,0);
+ return c;
+}
+
 // Display only. Fullscreen fitting never changes the numerical grids.
 function lightCurveWindow(){return liveHistory.view();}
 let fitPending=false;
@@ -1377,10 +1401,21 @@ function fitSimulator(){
    const extra=document.querySelector('.curve').getBoundingClientRect().bottom-innerHeight+16;
    if(extra>0){side=Math.max(260,side-extra);panels.style.maxWidth=`${2*side+14}px`;alignHeadings();}
   }
-  drawCurve();
+  drawViews();drawCurve();
  });
 }
 window.addEventListener('resize',fitSimulator);
+const mapDisplayObserver=new ResizeObserver(fitSimulator);
+for(const view of document.querySelectorAll('.panels .view'))mapDisplayObserver.observe(view);
+// Moving between screens can change pixel density without changing CSS size.
+let densityQuery;
+function watchDisplayDensity(){
+ densityQuery?.removeEventListener('change',displayDensityChanged);
+ densityQuery=matchMedia(`(resolution: ${devicePixelRatio}dppx)`);
+ densityQuery.addEventListener('change',displayDensityChanged,{once:true});
+}
+function displayDensityChanged(){watchDisplayDensity();fitSimulator();}
+watchDisplayDensity();
 const fullButton=$('fullscreen'),fullElement=document.documentElement;
 fullButton.hidden=!document.fullscreenEnabled||!fullElement.requestFullscreen;
 fullButton.onclick=async()=>{
