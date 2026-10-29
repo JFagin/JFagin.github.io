@@ -291,9 +291,8 @@ body.dialog-open { overflow: hidden; }
   *, *::before, *::after { transition: none !important; }
 }
 .simulator-embed { margin:12px 0 0; padding-top:4px; border-top:1px solid var(--line); }
-.simulator-open { margin:0 0 4px; text-align:right; font-size:13px; }
 #microlensing-frame { display:block; width:100%; height:1450px; border:0; }
-@media(max-width:520px) { #microlensing-frame { height:2200px; } .simulator-open { text-align:left; } }
+@media(max-width:520px) { #microlensing-frame { height:2200px; } }
 @media print {
   body { font-size: 11pt; background: white; }
   .container { width: 100%; }

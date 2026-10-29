@@ -6,6 +6,11 @@
   const sendVisibility = () => frame.contentWindow?.postMessage({
     type: 'microlensing-visibility', visible: inView && !document.hidden,
   }, location.origin);
+  const sendViewport = () => frame.contentWindow?.postMessage({
+    type: 'microlensing-viewport', height: window.innerHeight,
+    inset: document.querySelector('.site-header')?.getBoundingClientRect().height || 0,
+  }, location.origin);
+  window.addEventListener('resize', sendViewport);
   window.addEventListener('message', event => {
     if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
     if (event.data?.type !== 'microlensing-height') return;
@@ -20,6 +25,6 @@
       sendVisibility();
     }).observe(frame);
   } else inView = true;
-  frame.addEventListener('load', sendVisibility);
+  frame.addEventListener('load', () => { sendVisibility(); sendViewport(); });
   document.addEventListener('visibilitychange', sendVisibility);
 })();

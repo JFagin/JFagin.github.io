@@ -5,6 +5,36 @@ header, html.embedded header { margin-bottom: 6px; }
 .panels { gap: 14px; }
 .panels .panel-heading { margin-bottom: 3px; }
 .panels .view { width: 100%; }
+header { display: flex; align-items: center; }
+header > p { max-width: 590px; margin-top: 0; }
+.standalone-link { display: none; color: var(--teal); white-space: nowrap; }
+html.embedded .standalone-link { display: inline; }
+html.embedded header { display: block; }
+html.embedded header > p { max-width: none; margin-top: 4px; }
+#fullscreen { margin-left: 8px; }
+.fit-control { display: inline-flex; flex-direction: row; align-items: center; gap: 4px; margin-left: 8px; white-space: nowrap; }
+html:fullscreen { overflow: auto; background: var(--paper); }
+.panels { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-inline: auto; }
+.panels > section { min-width: 0; }
+.panels .panel-heading { min-height: 72px; height: 72px; flex-wrap: nowrap; align-content: center; }
+.panels .panel-title { flex: 1; }
+.panels .inline { gap: 4px; }
+.history-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 2px 0 8px; }
+.history-controls input { flex: 1; min-width: 80px; width: auto; }
+.history-controls label { display: inline; }
+.history-controls output { color: var(--muted); font-variant-numeric: tabular-nums; }
+.history-controls button { white-space: nowrap; }
+@media (max-width: 520px) {
+  .panels { grid-template-columns: 1fr; }
+  .history-controls output { width: 100%; }
+}
+@media (min-width: 521px) and (max-height: 850px) {
+  .curve #curve { height: 130px; }
+}
+@media (max-width: 760px) {
+  header { display: block; }
+  header > p { margin-top: 4px; }
+}
 .panels .colorbar { padding: 4px 0 0; }
 .toolbar { margin: 6px 0 2px; }
 .view-toggles { margin: 2px 0 4px; }
@@ -26,4 +56,7 @@ header, html.embedded header { margin-bottom: 6px; }
 }
 @media (min-width: 521px) and (pointer: coarse) {
   .toolbar button, .toolbar select { min-height: 40px; }
+}
+@media (min-width: 521px) {
+  html.short-viewport .curve #curve { height: 130px; }
 }
