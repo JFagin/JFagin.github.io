@@ -123,8 +123,8 @@ h1 { font-size: clamp(56px, 6.3vw, 83px); line-height: 1.12; letter-spacing: -3.
   padding: 0;
   overflow: hidden;
   width: 100%;
-  max-width: min(100%, calc((100vh - 180px) * var(--video-aspect)));
-  max-width: min(100%, calc((100svh - 180px) * var(--video-aspect)));
+  max-width: min(100%, calc((100vh - 52px) * var(--video-aspect)));
+  max-width: min(100%, calc((100svh - 52px) * var(--video-aspect)));
   margin-inline: auto;
 }
 .animation-surface video:fullscreen {
@@ -152,6 +152,14 @@ h1 { font-size: clamp(56px, 6.3vw, 83px); line-height: 1.12; letter-spacing: -3.
 .follow-up-feature .section-heading { margin-bottom: 10px; }
 .follow-up-feature h3 { font: 400 32px/1.2 var(--serif); letter-spacing: -.7px; }
 .follow-up-feature .figure-link { padding: 6px 18px 0; border: 1px solid #cbd6cf; border-radius: 4px; }
+#crossing-figure { width: fit-content; max-width: 100%; margin-inline: auto; }
+#crossing-figure #crossing-image {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 86px);
+  max-height: calc(100svh - 86px);
+  object-fit: contain;
+}
 .follow-up-feature figcaption { border-top: 0; padding-top: 6px; }
 .section-links { display: grid; justify-items: start; gap: 6px; }
 .publications > .section-heading { margin-bottom: 10px; }

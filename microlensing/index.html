@@ -32,7 +32,7 @@ button,select,input[type=number]{min-height:34px;padding:5px 8px}
 @media(min-width:521px) and (max-width:900px){.panels .panel-heading{min-height:70px;align-items:start}.panels .panel-title{max-width:210px}.panels .inline{gap:4px}}
 @media(max-width:760px){header>p{margin-top:6px}.panels .panel-heading{display:flex;flex-wrap:wrap;gap:4px 8px}.settings{gap:10px 12px}}
 html.embedded body{background:transparent;overflow:hidden}html.embedded main{max-width:none;padding:0}html.embedded nav[aria-label="Simulator navigation"],html.embedded header .eyebrow{display:none!important}html.embedded h1{font-size:28px}html.embedded header{margin-bottom:14px}
-</style><link rel="stylesheet" href="layout.css?v=20261028-sharp"></head>
+</style><link rel="stylesheet" href="layout.css?v=20261105-figure-fit"></head>
 <body><main>
 <nav aria-label="Simulator navigation" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-bottom:14px;font-size:13px"><a href="../#research" style="color:var(--teal)">← Back to research</a><a href="https://github.com/JFagin/microcaustics" style="color:var(--teal)">Microcaustics research package ↗</a></nav>
 <noscript><p>This interactive simulator requires JavaScript. You can still <a href="../#in-motion">view the research figures and animations</a>.</p></noscript>
@@ -1377,7 +1377,7 @@ function clearOverlay(canvas){
 
 // Display only. Fullscreen fitting never changes the numerical grids.
 function lightCurveWindow(){return liveHistory.view();}
-let fitPending=false;
+let fitPending=false,embeddedViewportHeight=0;
 function fitSimulator(){
  if(fitPending)return;fitPending=true;
  requestAnimationFrame(()=>{
@@ -1400,6 +1400,14 @@ function fitSimulator(){
    alignHeadings();
    const extra=document.querySelector('.curve').getBoundingClientRect().bottom-innerHeight+16;
    if(extra>0){side=Math.max(260,side-extra);panels.style.maxWidth=`${2*side+14}px`;alignHeadings();}
+  }else if(embeddedViewportHeight&&innerWidth>520){
+   const natural=panels.querySelector('.view').getBoundingClientRect().width;
+   const chrome=document.querySelector('.curve').getBoundingClientRect().bottom-panels.getBoundingClientRect().top-natural;
+   let side=Math.min(natural,Math.max(180,embeddedViewportHeight-chrome-4));
+   panels.style.maxWidth=`${2*side+14}px`;
+   alignHeadings();
+   const extra=document.querySelector('.curve').getBoundingClientRect().bottom-panels.getBoundingClientRect().top-embeddedViewportHeight;
+   if(extra>0){side=Math.max(180,side-extra);panels.style.maxWidth=`${2*side+14}px`;alignHeadings();}
   }
   drawViews();drawCurve();
  });
@@ -1436,7 +1444,14 @@ if(new URLSearchParams(location.search).get('embed')==='1'&&window.parent!==wind
  let resizePending=false;
  const reportHeight=()=>{if(document.fullscreenElement||resizePending)return;resizePending=true;requestAnimationFrame(()=>{resizePending=false;window.parent.postMessage({type:'microlensing-height',height:Math.ceil(main.getBoundingClientRect().height)},location.origin);});};
  new ResizeObserver(reportHeight).observe(main);document.addEventListener('fullscreenchange',reportHeight);reportHeight();
- window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==window.parent)return;if(event.data?.type==='microlensing-visibility'&&!event.data.visible&&!document.fullscreenElement)stop();});
+ window.addEventListener('message',event=>{
+  if(event.origin!==location.origin||event.source!==window.parent)return;
+  if(event.data?.type==='microlensing-visibility'&&!event.data.visible&&!document.fullscreenElement)stop();
+  if(event.data?.type==='microlensing-viewport'){
+   const height=event.data.height;
+   if(Number.isFinite(height)&&height>=200&&height<=10000&&height!==embeddedViewportHeight){embeddedViewportHeight=height;fitSimulator();}
+  }
+ });
 }
 
 

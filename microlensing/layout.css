@@ -41,6 +41,7 @@ html.simulator-fullscreen header > p { max-width: none; }
 .curve { margin: 4px 0 8px; }
 .curve .panel-heading { margin-bottom: 1px; }
 .curve #curve { height: 150px; }
+html.embedded:not(:fullscreen) .curve #curve { height: 130px; }
 .curve-footer .hint { margin-block: 2px; }
 .editor { padding-bottom: 8px; }
 .disk-controls { margin-top: 8px; }
