@@ -142,56 +142,26 @@ dialog.addEventListener("click", event => {
 dialog.addEventListener("close", () => document.body.classList.remove("dialog-open"));
 
 const animationStatus = document.querySelector("#animation-status");
-const playButtons = [...document.querySelectorAll("[data-play]")];
-const requestIds = new Map();
-function stopAnimation(button) {
-  const image = document.getElementById(button.dataset.play);
-  requestIds.set(button, (requestIds.get(button) || 0) + 1);
-  image.src = image.dataset.still;
-  button.disabled = false;
-  button.setAttribute("aria-pressed", "false");
-  button.innerHTML = '<span aria-hidden="true">▶</span> Play animation';
-}
-playButtons.forEach(button => {
-  button.hidden = false;
-  button.addEventListener("click", () => {
-    if (button.getAttribute("aria-pressed") === "true") {
-      stopAnimation(button);
-      animationStatus.textContent = "Animation stopped. Static preview restored.";
-      return;
-    }
-    const image = document.getElementById(button.dataset.play);
-    const requestId = (requestIds.get(button) || 0) + 1;
-    requestIds.set(button, requestId);
-    button.disabled = true;
-    button.textContent = "Loading animation…";
-    animationStatus.textContent = "Loading the selected simulation.";
-    const preload = new Image();
-    preload.onload = () => {
-      if (requestIds.get(button) !== requestId) return;
-      image.src = image.dataset.animation;
-      button.disabled = false;
-      button.setAttribute("aria-pressed", "true");
-      button.innerHTML = '<span aria-hidden="true">■</span> Stop animation';
-      animationStatus.textContent = "Animation playing. Use Stop animation to return to the static preview.";
-    };
-    preload.onerror = () => {
-      if (requestIds.get(button) !== requestId) return;
-      stopAnimation(button);
-      animationStatus.textContent = "The animation could not be loaded. The static preview is still available. Please try again.";
-    };
-    // No GIF is requested before an explicit click, including with reduced motion.
-    preload.src = image.dataset.animation;
+const scienceVideos = [...document.querySelectorAll("[data-science-video]")];
+scienceVideos.forEach(video => {
+  video.addEventListener("play", () => {
+    scienceVideos.forEach(other => { if (other !== video) other.pause(); });
+    animationStatus.textContent = `${video.dataset.videoName} playing. Use the video controls to pause, seek or view fullscreen.`;
   });
+  const showVideoError = () => { video.closest("figure").querySelector("[data-video-error]").hidden = false; };
+  video.addEventListener("error", showVideoError);
+  video.querySelectorAll("source").forEach(source => source.addEventListener("error", showVideoError));
 });
-const animationTabs = document.querySelector(".animation-tabs");
-animationTabs.hidden = false;
-function selectAnimation(name) {
-  playButtons.forEach(stopAnimation);
-  document.querySelectorAll("[data-animation-tab]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.animationTab === name)));
-  document.querySelectorAll("[data-animation-panel]").forEach(panel => { panel.hidden = panel.dataset.animationPanel !== name; });
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) scienceVideos.forEach(video => video.pause());
+});
+if ("IntersectionObserver" in window) {
+  const videoVisibility = new IntersectionObserver(entries => {
+    entries.forEach(({target, isIntersecting}) => {
+      const fullscreen = document.fullscreenElement;
+      if (!isIntersecting && !(fullscreen && fullscreen.contains(target))) target.pause();
+    });
+  }, {threshold: 0});
+  scienceVideos.forEach(video => videoVisibility.observe(video));
 }
-animationTabs.querySelectorAll("button").forEach(button => button.addEventListener("click", () => selectAnimation(button.dataset.animationTab)));
-selectAnimation("transfer");
-document.addEventListener("visibilitychange", () => { if (document.hidden) playButtons.forEach(stopAnimation); });
 document.querySelector("#year").textContent = String(new Date().getFullYear());

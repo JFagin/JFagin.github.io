@@ -110,12 +110,21 @@ h1 { font-size: clamp(56px, 6.3vw, 83px); line-height: 1.12; letter-spacing: -3.
 .mass-figure { grid-area: mass; width: 100%; max-width: 480px; justify-self: center; }
 .in-motion { background: var(--tint); border-bottom: 1px solid #d5dfd9; }
 .in-motion .section-heading { margin-bottom: 18px; }
-.animation-tabs { display: flex; gap: 6px; border-bottom: 1px solid #bfcec5; margin-bottom: 14px; }
+.animation-tabs { display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid #bfcec5; margin-bottom: 14px; }
 .tab-button { background: transparent; border: none; border-bottom: 2px solid transparent; padding: 13px 20px; color: var(--muted); font-size: 14px; font-weight: 600; }
 .tab-button[aria-pressed="true"] { color: var(--teal); border-bottom-color: var(--teal); }
 .tab-button:hover { color: var(--teal); background: #dfe9e2; }
 .animation-surface { background: white; padding: 14px 30px; border: 1px solid #cbd6cf; border-radius: 4px; }
 .animation-surface img { width: 100%; }
+.animation-surface video { display: block; width: 100%; height: auto; background: white; }
+.animation-video-surface { padding: 0; overflow: hidden; }
+.animation-bottom > .text-link { flex-shrink: 0; }
+.gr-section { background: white; border-bottom: 1px solid var(--line); }
+.isco-section { background: var(--paper); border-bottom: 1px solid var(--line); }
+.crossing-section .follow-up-feature { margin-top: 0; padding-top: 0; border-top: 0; }
+.gr-feature { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 48px; align-items: center; }
+.gr-feature h2 { margin-bottom: 20px; }
+.gr-figure img { max-height: 80vh; max-height: 80dvh; object-fit: contain; }
 .animation-bottom { display: flex; align-items: center; justify-content: space-between; gap: 60px; margin-top: 16px; }
 .animation-bottom figcaption { font-size: 13px; color: #4e6158; max-width: 780px; line-height: 1.7; }
 .animation-bottom strong { color: var(--ink); }
@@ -254,6 +263,8 @@ body.dialog-open { overflow: hidden; }
   .feature-copy h3 { font-size: 30px; }
   .animation-tabs { gap: 0; }
   .tab-button { flex: 1; padding: 11px 9px; font-size: 12px; }
+  .gr-feature { grid-template-columns: 1fr; gap: 24px; }
+  .gr-figure img { max-height: none; }
   .animation-surface { padding: 12px 8px; }
   .animation-bottom { flex-direction: column; align-items: flex-start; gap: 18px; }
   .animation-bottom figcaption { font-size: 12px; }
